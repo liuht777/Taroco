@@ -1,0 +1,24 @@
+# 服务治理service配置
+
+taroco:
+  # 服务治理配置
+  admin:
+    registry:
+      # taroco服务治理中刷新服务实例状态的间隔ms,默认30000ms
+      status-refresh-interval-in-mills: 30000
+  # swagger2配置
+  swagger:
+    enabled: true
+    title: Taroco服务治理
+    description: Taroco服务治理 RestFull Api
+    version: 1.0.1-SNAPSHOT
+    license: Apache License, Version 2.0
+    license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+    terms-of-service-url: https://gitee.com/Hyman_Liu/Taroco
+    contact:
+      name: liuht
+      url: https://gitee.com/Hyman_Liu
+      email: xxxxx@163.com
+    base-package: cn.taroco.admin.web
+    base-path: /**
+    exclude-path: /error

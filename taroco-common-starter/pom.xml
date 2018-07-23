@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>taroco</artifactId>
+        <groupId>cn.taroco</groupId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>taroco-common-starter</artifactId>
+    <packaging>pom</packaging>
+    <name>taroco-common-starter</name>
+    <modules>
+        <module>taroco-redis-spring-boot-starter</module>
+        <module>taroco-common-spring-boot-starter</module>
+        <module>taroco-log-spring-boot-starter</module>
+        <module>taroco-ribbon-spring-boot-starter</module>
+        <module>taroco-swagger2-spring-boot-starter</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+</project>

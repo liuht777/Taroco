@@ -1,0 +1,9 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: taroco-config
+  profiles:
+    # 本地存储方式
+    # native 默认从src/main/resources 下查找配置文件
+    active: native

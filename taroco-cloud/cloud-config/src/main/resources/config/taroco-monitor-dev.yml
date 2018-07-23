@@ -1,0 +1,10 @@
+turbine:
+  # 要监测的Eureka服务列表
+  app-config: taroco-demo-a,taroco-demo-b,taroco-gateway
+  # 默认从instance的homePageUrl拉取,设置了management.context-path并且没有重新设置homePageUrl的话,这里就要加上management.context-path
+  instanceUrlSuffix: ${management.context-path}/hystrix.stream
+  aggregator:
+      # 服务集群名称,默认serviceId,这里必须大写
+      clusterConfig: TAROCO-GATEWAY,TAROCO-DEMO-A,TAROCO-DEMO-B
+  # 所有的服务都用一个default集群名称
+  #cluster-name-expression: new String("default")

@@ -1,0 +1,10 @@
+server:
+  port: 10001
+
+spring:
+  application:
+    name: taroco-admin
+  cloud:
+    config:
+      uri: http://localhost:8888
+      profile: dev

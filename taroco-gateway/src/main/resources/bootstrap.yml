@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: taroco-gateway
+  cloud:
+    config:
+      uri: http://localhost:8888
+      profile: dev
+server:
+  port: 10000

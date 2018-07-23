@@ -1,0 +1,20 @@
+# 服务网关配置
+
+# 路由配置
+zuul:
+  retryable: true
+  #　忽略所有默认路由
+  ignored-services: '*'
+  rate-limit:
+    # 微服务实例限流指标 1000/s
+    permits-per-second: 1000
+  routes:
+    taroco-admin: # 服务治理
+      path: /taroco-admin/**
+      serviceId: taroco-admin
+    taroco-registry: # 注册中心
+      path: /taroco-registry/**
+      serviceId: taroco-registry
+    taroco-monitor: # 服务监控
+      path: /taroco-monitor/**
+      serviceId: taroco-monitor
