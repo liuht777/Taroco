@@ -1,5 +1,14 @@
 # 所有服务的全局配置
 
+# 公共配置地址
+base:
+  mysql:
+    url: jdbc:mysql://localhost:3306
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: hyman
+
 # actuator端点配置
 management:
   security:
