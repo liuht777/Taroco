@@ -13,12 +13,12 @@ security:
     client:
       clientId: resource1
       clientSecret: secret
-      userAuthorizationUri: http://localhost:9000/oauth/authorize
+      userAuthorizationUri: ${base.oauth2.server-url}/oauth/authorize
       grant-type: password
       scope: read
-      access-token-uri: http://localhost:9000/oauth/token
+      access-token-uri: ${base.oauth2.server-url}/oauth/token
     resource:
       jwt:
-        key-uri: http://localhost:9000/oauth/token_key
+        key-uri: ${base.oauth2.server-url}/oauth/token_key
   basic:
     enabled: false

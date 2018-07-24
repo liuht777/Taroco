@@ -12,4 +12,4 @@ security:
   oauth2:
     resource:
       jwt:
-        key-uri: http://localhost:9000/oauth/token_key
+        key-uri: ${base.oauth2.server-url}/oauth/token_key

@@ -8,6 +8,8 @@ base:
     host: 127.0.0.1
     port: 6379
     password: hyman
+  oauth2:
+    server-url: http://localhost:9000
 
 # actuator端点配置
 management:
