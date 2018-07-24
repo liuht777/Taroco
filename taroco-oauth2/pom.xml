@@ -11,7 +11,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>authentication-server</module>
-        <module>resource-server-demo</module>
+        <module>resource-server-demo1</module>
+        <module>resource-server-demo2</module>
         <module>oauth2-config</module>
     </modules>
     <artifactId>taroco-oauth2</artifactId>

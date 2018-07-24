@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: taroco-oauth2-resource-demo1
+  cloud:
+    config:
+      uri: http://localhost:8888
+      profile: dev
+server:
+  port: 9002
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-uri: http://localhost:9000/oauth/token_key

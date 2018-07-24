@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: taroco-oauth2-resource-demo
-  cloud:
-    config:
-      uri: http://localhost:8888
-      profile: dev
-server:
-  port: 9002

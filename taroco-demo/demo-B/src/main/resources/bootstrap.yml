@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: taroco-demo-B
+    name: taroco-demo1-B
   cloud:
     config:
       uri: http://localhost:8888
