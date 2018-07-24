@@ -8,10 +8,20 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
-    <artifactId>taroco-auth2</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>authentication-server</module>
+        <module>resource-server-demo</module>
+        <module>oauth2-config</module>
+    </modules>
+    <artifactId>taroco-oauth2</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>cn.taroco</groupId>
+            <artifactId>oauth2-config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>cn.taroco</groupId>
             <artifactId>taroco-log-spring-boot-starter</artifactId>
@@ -45,6 +55,10 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
         </dependency>
@@ -62,14 +76,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>true</scope>
+        </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

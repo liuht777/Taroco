@@ -1,0 +1,26 @@
+package cn.taroco.oauth2.config.store;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+
+import javax.sql.DataSource;
+
+/**
+ * 使用数据库存取令牌
+ *
+ * @author liuht
+ * @date 2018/7/24 16:23
+ */
+public class DbTokenStore {
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Bean
+    public TokenStore tokenStore(){
+        return new JdbcTokenStore(dataSource);
+    }
+
+}

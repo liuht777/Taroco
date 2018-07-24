@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: taroco-oauth2-server
+  cloud:
+    config:
+      uri: http://localhost:8888
+      profile: dev
+server:
+  port: 9001
+
+encrypt:
+  key-store:
+    location: mytest.jks
+    secret: mypass
+    alias: mytest
+
+

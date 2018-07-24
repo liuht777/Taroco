@@ -11,7 +11,7 @@
         <module>taroco-docs</module>
         <module>taroco-cloud</module>
         <module>taroco-gateway</module>
-        <module>taroco-auth2</module>
+        <module>taroco-oauth2</module>
         <module>taroco-demo</module>
     </modules>
     <packaging>pom</packaging>

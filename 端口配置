@@ -1,7 +1,8 @@
 配置中心 8888
 注册中心 9000
 服务网关 10000
-Auth2 Server 9001
+OAuth2 认证服务器 9001
+OAuth2 资源服务器 9002
 服务治理 taroco-admin 10001
 服务监控 taroco-monitor 10002
 

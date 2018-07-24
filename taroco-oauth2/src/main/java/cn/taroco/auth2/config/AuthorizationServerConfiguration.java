@@ -53,24 +53,24 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .withClient("client1")
                 // 此客户端可以使用的授权类型，默认为空。
                 // authorization_code：用验证获取code，再用code去获取token（用的最多的方式，也是最安全的方式）
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit", "client_credentials")
+                .authorizedGrantTypes("password", "authorization_code", "refresh_token", "client_credentials")
                 // 此客户端可以使用的权限（基于Spring Security authorities）。
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                 // 用来限制客户端的访问范围，如果为空（默认）的话，那么客户端拥有全部的访问范围。
-                .scopes("read", "write", "trust")
+                .scopes("read", "write")
                 // 需要值得信任的客户端）客户端安全码，如果有的话。
                 .secret("secret")
-                // token有效期为120秒
-                .accessTokenValiditySeconds(120)
-                // 刷新token有效期为600秒
-                .refreshTokenValiditySeconds(600);
+                // token有效期为1800秒
+                .accessTokenValiditySeconds(1800)
+                // 刷新token有效期为3600秒
+                .refreshTokenValiditySeconds(3600);
     }
 
     /**
      * 声明授权和token的端点以及token的服务的一些配置信息，比如采用什么存储方式、token的有效期等
      */
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .tokenStore(tokenStore)
                 .userApprovalHandler(userApprovalHandler)
@@ -81,7 +81,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      * 声明安全约束，哪些允许访问，哪些不允许访问
      */
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-        oauthServer.realm(REALM + "/client");
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
+        oauthServer
+                //.realm(REALM + "/client")
+                .allowFormAuthenticationForClients();
     }
 }
