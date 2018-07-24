@@ -14,9 +14,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableAuthJwtTokenStore
-public class Oauh2ServerApplication {
+public class AuthenticationServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Oauh2ServerApplication.class, args);
+        SpringApplication.run(AuthenticationServerApplication.class, args);
     }
 }
