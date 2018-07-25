@@ -44,7 +44,7 @@ public class TokenControllerTest {
     @Test
     public void getToken() throws Exception {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.put("username", Collections.singletonList("linyuan"));
+        map.put("username", Collections.singletonList("htliu"));
         map.put("password", Collections.singletonList("123456"));
         map.put("grant_type", Collections.singletonList("password"));
         map.put("scope", Collections.singletonList("read"));

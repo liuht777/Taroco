@@ -8,12 +8,12 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 import javax.sql.DataSource;
 
 /**
- * 通过数据库加载客户端详情
+ * 认证服务器:通过数据库加载客户端详情
  *
  * @author liuht
  * @date 2018/7/24 16:30
  */
-public class DbClientDetailsService {
+public class AuthDbClientDetailsService {
 
     @Autowired
     private DataSource dataSource;

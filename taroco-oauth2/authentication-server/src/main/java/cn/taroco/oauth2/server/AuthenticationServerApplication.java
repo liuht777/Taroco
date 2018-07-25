@@ -1,6 +1,6 @@
 package cn.taroco.oauth2.server;
 
-import cn.taroco.oauth2.config.annotation.EnableAuthJwtTokenStore;
+import cn.taroco.oauth2.config.annotation.EnableAuthRedisTokenStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -13,7 +13,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableAuthJwtTokenStore
+@EnableAuthRedisTokenStore
 public class AuthenticationServerApplication {
 
     public static void main(String[] args) {

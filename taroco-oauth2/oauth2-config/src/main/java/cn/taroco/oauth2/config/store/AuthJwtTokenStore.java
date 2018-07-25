@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import java.security.KeyPair;
 
 /**
- * 授权服务器 TokenStore 配置类，使用 JWT RSA 非对称加密
+ * 认证服务器使用 JWT RSA 非对称加密令牌
  *
  * @author liuht
  * @date 2018/7/24 16:21

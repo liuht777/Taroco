@@ -19,7 +19,7 @@ public class AuthorizationServerConfig extends AbstractAuthServerConfig {
      * 调用父类构造函数，设置令牌失效日期等信息
      */
     public AuthorizationServerConfig() {
-        super((int)TimeUnit.DAYS.toSeconds(1), 0, false, false);
+        super((int) TimeUnit.MINUTES.toSeconds(30), (int) TimeUnit.DAYS.toSeconds(1), true, true);
     }
 
     /**
@@ -37,8 +37,6 @@ public class AuthorizationServerConfig extends AbstractAuthServerConfig {
                 .secret("secret")
                 // 该client允许的授权类型
                 .authorizedGrantTypes("authorization_code", "password", "refresh_token", "client_credentials")
-                // Token 的有效期
-                .accessTokenValiditySeconds(3600)
                 // 允许的授权范围
                 .scopes("read", "write")
                 //登录后绕过批准询问(/oauth/confirm_access

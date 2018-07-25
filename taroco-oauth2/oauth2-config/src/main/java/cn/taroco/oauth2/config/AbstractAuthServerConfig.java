@@ -70,12 +70,12 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
     }
 
     /**
-     * 配置授权服务器端点，如令牌存储，令牌自定义，用户批准和授权类型，不包括端点安全配置
+     * 授权服务器端点配置，如令牌存储，令牌自定义，用户批准和授权类型，不包括端点安全配置
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         Collection<TokenEnhancer> tokenEnhancers = applicationContext.getBeansOfType(TokenEnhancer.class).values();
-        TokenEnhancerChain tokenEnhancerChain=new TokenEnhancerChain();
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
         tokenEnhancerChain.setTokenEnhancers(new ArrayList<>(tokenEnhancers));
 
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
@@ -86,7 +86,7 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
         defaultTokenServices.setRefreshTokenValiditySeconds(refreshTokenValiditySeconds);
         defaultTokenServices.setTokenEnhancer(tokenEnhancerChain);
         //若通过 JDBC 存储令牌
-        if (Objects.nonNull(jdbcClientDetailsService)){
+        if (Objects.nonNull(jdbcClientDetailsService)) {
             defaultTokenServices.setClientDetailsService(jdbcClientDetailsService);
         }
 
@@ -98,7 +98,7 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
 
 
     /**
-     * 配置授权服务器端点的安全
+     * 授权服务器端点的安全配置
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {

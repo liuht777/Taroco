@@ -8,12 +8,12 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import javax.sql.DataSource;
 
 /**
- * 使用数据库存取令牌
+ * 认证服务器使用数据库存取令牌
  *
  * @author liuht
  * @date 2018/7/24 16:23
  */
-public class DbTokenStore {
+public class AuthDbTokenStore {
 
     @Autowired
     private DataSource dataSource;

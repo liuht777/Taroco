@@ -13,12 +13,12 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 
 /**
- * 通过访问远程授权服务器 check_token 端点验证令牌
+ * 资源服务器: 通过访问远程授权服务器 check_token 端点验证令牌
  *
  * @author liuht
  * @date 2018/7/24 16:31
  */
-public class RemoteTokenService {
+public class ResourceRemoteTokenService {
 
     @Autowired
     private OAuth2ClientProperties oAuth2ClientProperties;
