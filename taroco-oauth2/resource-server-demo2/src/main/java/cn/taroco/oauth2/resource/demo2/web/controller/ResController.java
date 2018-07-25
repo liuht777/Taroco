@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ResController {
 
-    @GetMapping("/res")
+    @GetMapping("/res2/res")
     public ResponseEntity<String> res() {
-        return ResponseEntity.ok("<h1>这是资源服务器1的受保护的资源</h1>");
+        return ResponseEntity.ok("<h1>这是资源服务器2的受保护的资源</h1>");
     }
 
 }

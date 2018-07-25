@@ -1,6 +1,6 @@
 spring:
   application:
-    name: taroco-oauth2-resource-demo1
+    name: taroco-oauth2-resource-demo2
   cloud:
     config:
       uri: http://localhost:8888

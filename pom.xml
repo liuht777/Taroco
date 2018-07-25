@@ -81,6 +81,11 @@
                 <artifactId>taroco-swagger2-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>cn.taroco</groupId>
+                <artifactId>oauth2-config</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- Spring cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

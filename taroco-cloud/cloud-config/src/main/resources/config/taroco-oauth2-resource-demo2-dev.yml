@@ -1,0 +1,7 @@
+spring:
+  #redis配置
+  redis:
+    host: ${base.redis.host}
+    port: ${base.redis.port}
+    password: ${base.redis.password}
+    database: 0
