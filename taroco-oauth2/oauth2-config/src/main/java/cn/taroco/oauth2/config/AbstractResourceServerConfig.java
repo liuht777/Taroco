@@ -42,18 +42,14 @@ public class AbstractResourceServerConfig extends ResourceServerConfigurerAdapte
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .disable()
-                .exceptionHandling()
-                .and()
-                .headers()
-                .frameOptions()
-                .disable()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .requestMatcher(authorizationHeaderRequestMatcher());
+                // 禁用csrf
+                .csrf().disable()
+                // 禁用x-frame-options 即是: 允许使用iframe
+                .headers().frameOptions().disable()
+                // Spring不使用HTTPSession 默认对所有请求都做权限校验
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                // 请求必须包含认证头部"Authorization"
+                .and().requestMatcher(authorizationHeaderRequestMatcher());
     }
 
     @Override
