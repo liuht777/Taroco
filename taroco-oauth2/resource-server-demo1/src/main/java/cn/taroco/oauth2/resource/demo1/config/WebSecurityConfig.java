@@ -13,6 +13,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 @Configuration
 public class WebSecurityConfig extends AbstractResourceServerConfig {
 
+    /**
+     * 这里只需要配置每个资源服务器:
+     * 各个资源需要什么样的权限才能够访问
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         super.configure(http);

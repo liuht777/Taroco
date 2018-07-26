@@ -17,8 +17,5 @@ security:
       grant-type: password
       scope: read
       access-token-uri: ${base.oauth2.server-url}/oauth/token
-    resource:
-      jwt:
-        key-uri: ${base.oauth2.server-url}/oauth/token_key
   basic:
     enabled: false
