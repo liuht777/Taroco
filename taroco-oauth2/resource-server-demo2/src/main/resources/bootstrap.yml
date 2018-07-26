@@ -7,9 +7,3 @@ spring:
       profile: dev
 server:
   port: 9002
-
-security:
-  oauth2:
-    resource:
-      jwt:
-        key-uri: ${base.oauth2.server-url}/oauth/token_key
