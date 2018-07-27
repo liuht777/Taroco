@@ -112,9 +112,6 @@ public class DefaultExceptionAdvice {
                 msg.append(constraintViolation.getPropertyPath()).append(":").append(constraintViolation.getMessage() + "\n");
             }
             extMessage = msg.toString();
-        } else if (ex instanceof MissingServletRequestParameterException) {
-            error = DefaultError.INVALID_PARAMETER;
-            extMessage = ex.getMessage();
         } else if (ex instanceof HttpMediaTypeNotSupportedException) {
             error = DefaultError.CONTENT_TYPE_NOT_SUPPORT;
             extMessage = ex.getMessage();

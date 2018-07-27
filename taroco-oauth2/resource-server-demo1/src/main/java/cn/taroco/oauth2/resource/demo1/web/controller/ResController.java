@@ -41,7 +41,8 @@ public class ResController {
         httpHeaders.set("Authorization", httpReq.getHeader("Authorization"));
         HttpEntity httpEntity = new HttpEntity(httpHeaders);
         //请求资源服务器2的资源
-        return restTemplate.exchange("http://localhost:9003/res", HttpMethod.GET, httpEntity, String.class);
+        return restTemplate.exchange("http://taroco-oauth2-resource-demo2/res2/res", HttpMethod.GET, httpEntity, String
+                .class);
     }
 
 }

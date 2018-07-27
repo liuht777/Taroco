@@ -13,9 +13,10 @@ security:
     client:
       clientId: resource1
       clientSecret: secret
-      userAuthorizationUri: ${base.oauth2.server-url}/oauth/authorize
+      userAuthorizationUri: http://taroco-oauth2-server/oauth/authorize
       grant-type: password
       scope: read
-      access-token-uri: ${base.oauth2.server-url}/oauth/token
-  basic:
-    enabled: false
+      access-token-uri: http://taroco-oauth2-server/oauth/token
+    resource:
+      # token解析端点
+      token-info-uri: http://taroco-oauth2-server/oauth/check_token

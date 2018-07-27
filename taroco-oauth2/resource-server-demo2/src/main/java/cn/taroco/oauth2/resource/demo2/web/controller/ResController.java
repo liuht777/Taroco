@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 资源服务器1-资源接口
+ * 资源服务器2-资源接口
  *
  * @author liuht
  * @date 2018/7/24 17:46

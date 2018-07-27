@@ -6,4 +6,4 @@ spring:
       uri: http://localhost:8888
       profile: dev
 server:
-  port: 9002
+  port: 9003

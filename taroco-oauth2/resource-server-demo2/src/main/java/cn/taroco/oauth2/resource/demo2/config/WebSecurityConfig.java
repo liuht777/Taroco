@@ -20,7 +20,8 @@ public class WebSecurityConfig extends AbstractResourceServerConfig {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http.authorizeRequests()
+        http
+                .authorizeRequests()
                 //访问受保护资源 /res 的要求：客户端 Scope 为 read，用户本身角色为 USER
                 .antMatchers("/res2/*")
                 .access("#oauth2.hasScope('read') and hasRole('USER')");
