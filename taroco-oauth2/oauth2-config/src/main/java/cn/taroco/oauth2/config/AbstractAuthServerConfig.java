@@ -1,22 +1,30 @@
 package cn.taroco.oauth2.config;
 
+import cn.taroco.common.constants.CommonConstant;
+import cn.taroco.common.constants.SecurityConstants;
+import cn.taroco.oauth2.config.util.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
+import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 认证服务器配置
@@ -26,8 +34,6 @@ import java.util.Objects;
  */
 @EnableAuthorizationServer
 public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapter {
-    @Autowired
-    private ApplicationContext applicationContext;
 
     @Autowired
     private TokenStore tokenStore;
@@ -38,8 +44,8 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Autowired(required = false)
-    private JdbcClientDetailsService jdbcClientDetailsService;
+    @Autowired
+    private DataSource dataSource;
 
     /**
      * 令牌失效时间
@@ -61,7 +67,6 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
      */
     private boolean isSupportRefreshToken;
 
-
     public AbstractAuthServerConfig(int accessTokenValiditySeconds, int refreshTokenValiditySeconds, boolean isReuseRefreshToken, boolean isSupportRefreshToken) {
         this.accessTokenValiditySeconds = accessTokenValiditySeconds;
         this.refreshTokenValiditySeconds = refreshTokenValiditySeconds;
@@ -69,14 +74,55 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
         this.isSupportRefreshToken = isSupportRefreshToken;
     }
 
+    @Bean
+    public ClientDetailsService clientDetailsService() {
+        JdbcClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
+        clientDetailsService.setSelectClientDetailsSql(SecurityConstants.DEFAULT_SELECT_STATEMENT);
+        clientDetailsService.setFindClientDetailsSql(SecurityConstants.DEFAULT_FIND_STATEMENT);
+        return clientDetailsService;
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        TarocoJwtAccessTokenConverter jwtAccessTokenConverter = new TarocoJwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey(CommonConstant.SIGN_KEY);
+        return jwtAccessTokenConverter;
+    }
+
+    /**
+     * jwt 生成token 定制化处理
+     *
+     * @return TokenEnhancer
+     */
+    @Bean
+    public TokenEnhancer tokenEnhancer() {
+        return (accessToken, authentication) -> {
+            final Map<String, Object> additionalInfo = new HashMap<>(2);
+            additionalInfo.put("license", SecurityConstants.LICENSE);
+            UserDetailsImpl user = (UserDetailsImpl) authentication.getUserAuthentication().getPrincipal();
+            if (user != null) {
+                additionalInfo.put("userId", user.getUserId());
+            }
+            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+            return accessToken;
+        };
+    }
+
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+
+        clients.withClientDetails(clientDetailsService());
+    }
+
     /**
      * 授权服务器端点配置，如令牌存储，令牌自定义，用户批准和授权类型，不包括端点安全配置
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        Collection<TokenEnhancer> tokenEnhancers = applicationContext.getBeansOfType(TokenEnhancer.class).values();
+        //token增强配置
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(new ArrayList<>(tokenEnhancers));
+        tokenEnhancerChain.setTokenEnhancers(
+                Arrays.asList(tokenEnhancer(), jwtAccessTokenConverter()));
 
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setReuseRefreshToken(isReuseRefreshToken);
@@ -85,10 +131,7 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
         defaultTokenServices.setAccessTokenValiditySeconds(accessTokenValiditySeconds);
         defaultTokenServices.setRefreshTokenValiditySeconds(refreshTokenValiditySeconds);
         defaultTokenServices.setTokenEnhancer(tokenEnhancerChain);
-        //若通过 JDBC 存储令牌
-        if (Objects.nonNull(jdbcClientDetailsService)) {
-            defaultTokenServices.setClientDetailsService(jdbcClientDetailsService);
-        }
+        defaultTokenServices.setClientDetailsService(clientDetailsService());
 
         endpoints
                 .authenticationManager(authenticationManager)
@@ -96,14 +139,13 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
                 .tokenServices(defaultTokenServices);
     }
 
-
     /**
      * 授权服务器端点的安全配置
      */
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
-        oauthServer
-                .tokenKeyAccess("permitAll()")
+    public void configure(AuthorizationServerSecurityConfigurer security) {
+        security
+                .tokenKeyAccess("isAuthenticated()")
                 .checkTokenAccess("permitAll()")
                 // 让/oauth/token支持client_id以及client_secret作登录认证
                 .allowFormAuthenticationForClients();

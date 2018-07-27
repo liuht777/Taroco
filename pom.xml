@@ -12,6 +12,7 @@
         <module>taroco-cloud</module>
         <module>taroco-gateway</module>
         <module>taroco-oauth2</module>
+        <module>taroco-upms-service</module>
         <module>taroco-demo</module>
     </modules>
     <packaging>pom</packaging>
@@ -50,6 +51,17 @@
         <curator-recipes.version>2.10.0</curator-recipes.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <swagger.version>2.7.0</swagger.version>
+        <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
+        <kaptcha.version>0.0.9</kaptcha.version>
+        <javadoc.version>3.0.0</javadoc.version>
+        <mybatis-plus.version>2.1.9</mybatis-plus.version>
+        <jasypt.version>1.18</jasypt.version>
+        <ttl.version>2.2.0</ttl.version>
+        <hutool.version>3.3.2</hutool.version>
+        <jjwt.version>0.9.0</jjwt.version>
+        <velocity-engine-core.version>2.0</velocity-engine-core.version>
+        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
+        <sharding-jdbc-core-spring-boot-starter.version>2.0.1</sharding-jdbc-core-spring-boot-starter.version>
     </properties>
 
     <dependencyManagement>
@@ -192,4 +204,17 @@
             <!-- zookeeper end -->
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <!--配置文件处理器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 </project>

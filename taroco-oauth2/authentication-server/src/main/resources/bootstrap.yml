@@ -1,6 +1,6 @@
 spring:
   application:
-    name: taroco-oauth2-server
+    name: taroco-authentication-server
   cloud:
     config:
       uri: http://localhost:8888

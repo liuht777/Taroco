@@ -1,5 +1,6 @@
 package cn.taroco.oauth2.config.store;
 
+import cn.taroco.common.constants.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -18,8 +19,17 @@ public class AuthRedisTokenStore {
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
+    /**
+     * 如果使用的 redis-cluster 模式请使用 TarocoRedisTokenStore
+     * * PigRedisTokenStore tokenStore = new PigRedisTokenStore();
+     * * tokenStore.setRedisTemplate(redisTemplate)
+     *
+     * @return TokenStore
+     */
     @Bean
     public TokenStore tokenStore() {
+        RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
+        tokenStore.setPrefix(SecurityConstants.TAROCO_PREFIX);
         return new RedisTokenStore(redisConnectionFactory);
     }
 }

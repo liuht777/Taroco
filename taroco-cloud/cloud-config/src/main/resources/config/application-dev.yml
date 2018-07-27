@@ -11,6 +11,11 @@ base:
   oauth2:
     server-url: http://localhost:9000
 
+server:
+  tomcat:
+    max-threads: 200 # Maximum amount of worker threads.
+    min-spare-threads: 10 # Minimum amount of worker threads
+
 # actuator端点配置
 management:
   security:
@@ -52,6 +57,11 @@ eureka:
 
 # hystrix配置
 hystrix:
+  threadpool:
+    default:
+      coreSize: 100
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 800
   command:
     default:
       execution:
