@@ -35,9 +35,9 @@ eureka:
       # 自定义服务实例id
       instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
       # 设置服务实例info path
-      status-page-url-path: ${management.context-path}/info
+      status-page-url-path: /info
       # 设置服务实例健康检查path
-      health-check-url-path: ${management.context-path}/health
+      health-check-url-path: /health
       # 服务实例的续约到期时间（默认90秒），也就是心跳的最大等待时间。开发阶段调小
       lease-expiration-duration-in-seconds: 10
       # 服务实例的续约更新时间间隔（默认30秒），也就是心跳时间。开发阶段调小
