@@ -206,15 +206,36 @@
     </dependencyManagement>
 
     <dependencies>
-        <!--配置文件处理器-->
+        <!-- log必须依赖 -->
+        <dependency>
+            <groupId>cn.taroco</groupId>
+            <artifactId>taroco-log-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- actuator端点都依赖吧 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!-- Spring Boot配置文件处理器 自定义配置的提示等-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- eureka-client -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- cloud config -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
     </dependencies>
 </project>

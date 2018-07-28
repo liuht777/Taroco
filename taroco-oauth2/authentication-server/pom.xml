@@ -19,10 +19,6 @@
         </dependency>
         <dependency>
             <groupId>cn.taroco</groupId>
-            <artifactId>taroco-log-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.taroco</groupId>
             <artifactId>taroco-ribbon-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
@@ -40,15 +36,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
