@@ -13,6 +13,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>cn.taroco</groupId>
+            <artifactId>taroco-log-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

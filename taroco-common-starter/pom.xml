@@ -10,6 +10,7 @@
     <artifactId>taroco-common-starter</artifactId>
     <packaging>pom</packaging>
     <name>taroco-common-starter</name>
+
     <modules>
         <module>taroco-redis-spring-boot-starter</module>
         <module>taroco-common-spring-boot-starter</module>
@@ -18,7 +19,4 @@
         <module>taroco-swagger2-spring-boot-starter</module>
     </modules>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 </project>

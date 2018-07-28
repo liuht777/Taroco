@@ -15,5 +15,10 @@
     </modules>
     <artifactId>taroco-demo</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>cn.taroco</groupId>
+            <artifactId>taroco-log-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
 </project>
