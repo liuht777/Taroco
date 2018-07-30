@@ -1,10 +1,33 @@
+# actuator端点配置
+management:
+  security:
+    # 不使用actuator默认的安全验证，可以直接访问开启的端点
+    enabled: false
+  # 为actuator端点设置前缀,一般情况下都需要设置以便与业务path区分开来
+  context-path: /management
+
+security:
+  basic:
+    enabled: true # 启用身份认证
+  user:
+    name: taroco # 定义用户名
+    password: taroco # 定义密码
+
 spring:
   application:
     name: taroco-registry
-  cloud:
-    config:
-      uri: http://localhost:8888
-      profile: dev
 server:
   port: 9000
 
+# 在默认设置下，该服务注册中心也会将自己作为客户端来尝试注册它自己，所以我们需要禁用它的客户端注册行为
+eureka:
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: false
+    #是否从eureka服务器获取注册信息
+    fetch-registry: false
+  server:
+    # 关闭自我保护模式(生产环境不建议关闭)
+    enable-self-preservation: false
+    # 清理无效节点间隔（单位毫秒，默认是60*1000）开发阶段调小
+    eviction-interval-timer-in-ms: 5000
