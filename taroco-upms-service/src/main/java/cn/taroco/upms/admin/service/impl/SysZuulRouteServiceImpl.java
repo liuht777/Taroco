@@ -42,9 +42,6 @@ public class SysZuulRouteServiceImpl extends ServiceImpl<SysZuulRouteMapper, Sys
     @Autowired
     private RedisTemplate redisTemplate;
 
-    //@Autowired
-    //private RabbitTemplate rabbitTemplate;
-
     /**
      * 立即生效配置
      *

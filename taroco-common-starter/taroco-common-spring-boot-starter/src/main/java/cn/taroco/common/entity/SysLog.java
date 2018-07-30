@@ -19,8 +19,6 @@ package cn.taroco.common.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -42,8 +40,7 @@ public class SysLog implements Serializable {
     /**
      * 编号
      */
-    @TableId(type = IdType.ID_WORKER)
-    @JsonSerialize(using = ToStringSerializer.class)
+    @TableId(type = IdType.AUTO)
     private Long id;
     /**
      * 日志类型

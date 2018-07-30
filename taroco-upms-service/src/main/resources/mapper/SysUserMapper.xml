@@ -33,7 +33,7 @@
     </resultMap>
 
     <!-- userVo结果集 -->
-    <resultMap id="userVoResultMap" type="com.github.pig.common.vo.UserVO">
+    <resultMap id="userVoResultMap" type="cn.taroco.common.vo.UserVO">
         <id column="user_id" property="userId"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
@@ -45,7 +45,7 @@
         <result column="udel_flag" property="delFlag"/>
         <result column="deptId" property="deptId"/>
         <result column="deptName" property="deptName"/>
-        <collection property="roleList" ofType="com.github.pig.common.vo.SysRole">
+        <collection property="roleList" ofType="cn.taroco.common.vo.SysRole">
             <id column="role_id" property="roleId" />
             <result column="role_name" property="roleName" />
             <result column="role_code" property="roleCode" />

@@ -35,6 +35,7 @@ public class WebSecurityConfig extends AbstractSecurityConfig {
                 http.formLogin().loginPage("/authentication/require")
                         .loginProcessingUrl("/authentication/form")
                         .successForwardUrl("/authentication/loginSuccess")
+                        .failureUrl("/authentication/require?error=true")
                         .and()
                         .authorizeRequests();
         filterIgnorePropertiesConfig

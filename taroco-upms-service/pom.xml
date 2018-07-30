@@ -63,16 +63,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!--HikariCP连接池-->
+		<!-- druid连接池 -->
 		<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.shardingjdbc</groupId>
-			<artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>
-			<version>${sharding-jdbc-core-spring-boot-starter.version}</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>io.shardingjdbc</groupId>-->
+			<!--<artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>-->
+			<!--<version>${sharding-jdbc-core-spring-boot-starter.version}</version>-->
+		<!--</dependency>-->
         <!--mybatis-plus-->
         <dependency>
             <groupId>com.baomidou</groupId>

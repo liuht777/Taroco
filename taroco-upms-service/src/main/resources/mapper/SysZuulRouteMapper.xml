@@ -20,7 +20,7 @@
 <mapper namespace="cn.taroco.upms.admin.mapper.SysZuulRouteMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.github.pig.common.entity.SysZuulRoute">
+    <resultMap id="BaseResultMap" type="cn.taroco.common.entity.SysZuulRoute">
         <id column="id" property="id" />
         <result column="path" property="path" />
         <result column="service_id" property="serviceId" />

@@ -20,7 +20,7 @@
 <mapper namespace="cn.taroco.upms.admin.mapper.SysLogMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.github.pig.common.entity.SysLog">
+    <resultMap id="BaseResultMap" type="cn.taroco.common.entity.SysLog">
         <id column="id" property="id"/>
         <result column="type" property="type"/>
         <result column="title" property="title"/>
