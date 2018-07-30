@@ -65,7 +65,9 @@ public class PigResourcesGenerator {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
-        dsc.setUrl("jdbc:mysql://localhost:3309/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL" +
+        dsc.setUrl("jdbc:mysql://localhost:3306/taroco-oauth2?characterEncoding=utf8&zeroDateTimeBehavior" +
+                "=convertToNull" +
+                "&useSSL" +
                 "=false");
         mpg.setDataSource(dsc);
 
@@ -79,8 +81,8 @@ public class PigResourcesGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.github.pig.admin");
-        pc.setController("controller");
+        pc.setParent("cn.taroco.upms.admin");
+        pc.setController("sfd");
         mpg.setPackageInfo(pc);
 
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
