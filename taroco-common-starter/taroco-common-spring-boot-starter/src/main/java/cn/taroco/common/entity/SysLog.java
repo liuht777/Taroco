@@ -18,6 +18,7 @@
 package cn.taroco.common.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
@@ -33,6 +34,7 @@ import java.util.Date;
  * @since 2017-11-20
  */
 @Data
+@TableName("sys_log")
 public class SysLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
