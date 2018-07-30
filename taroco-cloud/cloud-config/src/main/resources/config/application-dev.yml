@@ -86,3 +86,16 @@ ribbon:
   NFLoadBalancerRuleClassName: cn.taroco.common.ribbon.XlabelWeightMetadataRule
   # 从注册中心刷新servelist的时间 默认30秒 ms
   ServerListRefreshInterval: 15000
+
+
+# permitALl
+ignore:
+  urls:
+    - /authentication/**
+    - /**/*.css
+    - /**/*.js
+    - /social
+    - /signin
+    - /signup
+    - ${management.context-path}/**
+    - /mobile/token

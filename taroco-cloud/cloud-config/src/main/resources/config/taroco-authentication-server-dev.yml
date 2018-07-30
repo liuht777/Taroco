@@ -8,7 +8,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: ${base.mysql.url}/taroco-auth2
+    url: ${base.mysql.url}/taroco-oauth2
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -40,18 +40,3 @@ spring:
     prefer-file-system-access: true
     suffix: .ftl
     template-loader-path: classpath:/templates/
-
-
-# permitALl
-ignore:
-  urls:
-    - /authentication/**
-    - /**/*.css
-    - /social
-    - /signin
-    - /signup
-    - /info
-    - /health
-    - /metrics/**
-    - /loggers/**
-    - /mobile/token

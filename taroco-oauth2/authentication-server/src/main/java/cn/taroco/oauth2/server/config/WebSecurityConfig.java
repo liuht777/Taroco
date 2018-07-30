@@ -34,6 +34,7 @@ public class WebSecurityConfig extends AbstractSecurityConfig {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry =
                 http.formLogin().loginPage("/authentication/require")
                         .loginProcessingUrl("/authentication/form")
+                        .successForwardUrl("/authentication/loginSuccess")
                         .and()
                         .authorizeRequests();
         filterIgnorePropertiesConfig
