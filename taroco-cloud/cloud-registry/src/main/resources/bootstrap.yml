@@ -6,13 +6,6 @@ management:
   # 为actuator端点设置前缀,一般情况下都需要设置以便与业务path区分开来
   context-path: /management
 
-security:
-  basic:
-    enabled: true # 启用身份认证
-  user:
-    name: taroco # 定义用户名
-    password: taroco # 定义密码
-
 spring:
   application:
     name: taroco-registry
@@ -24,8 +17,12 @@ eureka:
   client:
     # 表示是否注册自身到eureka服务器
     register-with-eureka: false
-    #是否从eureka服务器获取注册信息
+    # 表示是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false。
     fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: localhost
   server:
     # 关闭自我保护模式(生产环境不建议关闭)
     enable-self-preservation: false
