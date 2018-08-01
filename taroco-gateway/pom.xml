@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.taroco</groupId>
-            <artifactId>taroco-log-spring-boot-starter</artifactId>
+            <artifactId>taroco-common-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -27,6 +27,16 @@
         <dependency>
             <groupId>cn.taroco</groupId>
             <artifactId>taroco-ribbon-spring-boot-starter</artifactId>
+        </dependency>
+        <!--oauth2.0-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+        <!--feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
     </dependencies>
 

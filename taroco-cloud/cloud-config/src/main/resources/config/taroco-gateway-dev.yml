@@ -18,3 +18,40 @@ zuul:
     taroco-monitor: # 服务监控
       path: /taroco-monitor/**
       serviceId: taroco-monitor
+    admin: # 权限管理服务
+      path: /admin/**
+      serviceId: taroco-upms-service
+    auth: # 统一认证服务
+      path: /auth/**
+      serviceId: taroco-authentication-server
+
+security:
+  encode:
+    key: '1234567887654321' #必须16位
+  validate:
+    code: false
+    preview: true
+  sessions: stateless
+  oauth2:
+    client:
+      client-id: taroco
+      client-secret: taroco
+    resource:
+      jwt:
+         key-uri: ${base.auth.server}/oauth/token_key #解析jwt令牌所需要密钥的地址
+
+ignore:
+  urls:
+    - /mobile/**
+    - /auth/**
+    - /admin/code/*
+    - /admin/smsCode/*
+    - /admin/user/info
+    - /admin/menu/userMenu
+    - /swagger-resources/**
+    - /swagger-ui.html
+    - /*/v2/api-docs
+    - /swagger/api-docs
+    - /webjars/**
+  clients:
+    - app

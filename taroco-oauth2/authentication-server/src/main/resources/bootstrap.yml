@@ -3,7 +3,8 @@ spring:
     name: taroco-authentication-server
   cloud:
     config:
-      uri: http://localhost:8888
       profile: dev
+      discovery:
+        service-id: taroco-config
 server:
   port: 9001

@@ -40,3 +40,15 @@ spring:
     prefer-file-system-access: true
     suffix: .ftl
     template-loader-path: classpath:/templates/
+
+# permitALl
+ignore:
+  urls:
+    - /authentication/**
+    - /**/*.css
+    - /**/*.js
+    - /social
+    - /signin
+    - /signup
+    - ${management.context-path}/**
+    - /mobile/token

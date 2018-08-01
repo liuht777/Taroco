@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 
@@ -44,17 +43,17 @@ import java.awt.image.BufferedImage;
 public class ValidateCodeController {
     @Autowired
     private Producer producer;
+
     @Autowired
     private SysUserService userService;
 
     /**
      * 创建验证码
      *
-     * @param request request
      * @throws Exception
      */
     @GetMapping(SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/{randomStr}")
-    public void createCode(@PathVariable String randomStr, HttpServletRequest request, HttpServletResponse response)
+    public void createCode(@PathVariable String randomStr, HttpServletResponse response)
             throws Exception {
         Assert.notEmpty(randomStr, "机器码不能为空");
         response.setHeader("Cache-Control", "no-store, no-cache");

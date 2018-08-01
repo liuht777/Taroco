@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author lengleng
  * @date 2017/10/31
  */
-@FeignClient(name = ServiceNameConstants.UPMS, fallback = UserServiceFallbackImpl.class)
+@FeignClient(name = ServiceNameConstants.UPMS_SERVICE, fallback = UserServiceFallbackImpl.class)
 public interface UserService {
     /**
      * 通过用户名查询用户、角色信息

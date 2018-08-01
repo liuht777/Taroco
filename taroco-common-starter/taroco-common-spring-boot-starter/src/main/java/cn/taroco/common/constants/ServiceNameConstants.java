@@ -11,5 +11,10 @@ public interface ServiceNameConstants {
     /**
      * 用户权限服务
      */
-    String UPMS = "taroco-upms-service";
+    String UPMS_SERVICE = "taroco-upms-service";
+
+    /**
+     * 认证服务
+     */
+    String AUTH_SERVICE = "taroco-authentication-server";
 }
