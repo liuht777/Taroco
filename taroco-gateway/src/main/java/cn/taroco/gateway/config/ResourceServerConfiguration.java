@@ -61,7 +61,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .authorizeRequests();
         filterIgnorePropertiesConfig.getUrls().forEach(url -> registry.antMatchers(url).permitAll());
         registry.anyRequest()
-                .access("@permissionService.hasPermission(request,authentication)");
+                .access("@permissionService.hasPermission(request, authentication)");
     }
 
     @Override

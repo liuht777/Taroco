@@ -1,5 +1,5 @@
 /*
- *    Copyright (c) 2018-2025, liuht All rights reserved.
+ *    Copyright (c) 2018-2025, lengleng All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -12,25 +12,28 @@
  * Neither the name of the pig4cloud.com developer nor the names of its
  * contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
- * Author: liuht (wangiegie@gmail.com)
+ * Author: lengleng (wangiegie@gmail.com)
  */
 
-package cn.taroco.upms.admin;
+package cn.taroco.gateway.service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.core.Authentication;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 请求权限判断service
+ *
  * @author liuht
- * @date 2017年10月27日13:59:05
+ * @date 2017/10/28
  */
-@EnableAsync
-@SpringBootApplication
-@EnableDiscoveryClient
-public class TarocoUpmsAdminApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(TarocoUpmsAdminApplication.class, args);
-    }
+public interface PermissionService {
+    /**
+     * 判断请求是否有权限
+     *
+     * @param request        HttpServletRequest
+     * @param authentication 认证信息
+     * @return 是否有权限
+     */
+    boolean hasPermission(HttpServletRequest request, Authentication authentication);
 }

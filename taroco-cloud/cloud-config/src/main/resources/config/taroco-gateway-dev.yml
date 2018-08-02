@@ -1,4 +1,11 @@
 # 服务网关配置
+spring:
+  #redis配置
+  redis:
+    host: ${base.redis.host}
+    port: ${base.redis.port}
+    password: ${base.redis.password}
+    database: 0
 
 # 路由配置
 zuul:
@@ -8,22 +15,6 @@ zuul:
   rate-limit:
     # 微服务实例限流指标 1000/s
     permits-per-second: 1000
-  routes:
-    taroco-admin: # 服务治理
-      path: /taroco-admin/**
-      serviceId: taroco-admin
-    taroco-registry: # 注册中心
-      path: /taroco-registry/**
-      serviceId: taroco-registry
-    taroco-monitor: # 服务监控
-      path: /taroco-monitor/**
-      serviceId: taroco-monitor
-    admin: # 权限管理服务
-      path: /admin/**
-      serviceId: taroco-upms-service
-    auth: # 统一认证服务
-      path: /auth/**
-      serviceId: taroco-authentication-server
 
 security:
   encode:
