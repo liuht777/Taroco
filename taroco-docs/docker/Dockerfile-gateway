@@ -12,4 +12,4 @@ ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS \
 -Dfile.encoding=UTF8 -Duser.timezone=GMT+08 \
 -Djava.security.egd=file:/dev/./urandom \
 -Dspring.cloud.config.profile=$CONFIG_PROFILE \
--jar /app.jar"]
+-jar /app/app.jar"]
