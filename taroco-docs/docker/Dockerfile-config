@@ -5,5 +5,13 @@ ADD ./jar/cloud-config-*.jar /app/app.jar
 
 ENV JAVA_OPTS="-Xmx256m -Xms256m"
 
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dfile.encoding=UTF8 -Duser.timezone=GMT+08 -Djava.security.egd=file:/dev/./urandom -jar /app.jar"]
+ENV EUREKA_SERVER_HOST="127.0.0.1"
 
+ENV EUREKA_SERVER_PORT="9000"
+
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS
+-Deureka.client.serviceUrl.defaultZone=http://$EUREKA_SERVER_HOST:$EUREKA_SERVER_PORT/eureka/
+-Dfile.encoding=UTF8
+-Duser.timezone=GMT+08
+-Djava.security.egd=file:/dev/./urandom
+-jar /app.jar"]
