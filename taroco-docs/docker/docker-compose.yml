@@ -20,7 +20,7 @@ services:
 
   taroco-authentication-server:
     links:
-      - taroco-config-dev:taroco-config-dev
+      - taroco-config-dev:taroco-config
     build:
       context: ./
       dockerfile: Dockerfile-auth
@@ -30,7 +30,7 @@ services:
 
   taroco-upms-service:
     links:
-      - taroco-config-dev:taroco-config-dev
+      - taroco-config-dev:taroco-config
     build:
       context: ./
       dockerfile: Dockerfile-upms
@@ -40,7 +40,7 @@ services:
 
   taroco-gateway:
     links:
-      - taroco-config-dev:taroco-config-dev
+      - taroco-config-dev:taroco-config
     build:
       context: ./
       dockerfile: Dockerfile-gateway
