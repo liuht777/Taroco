@@ -26,6 +26,7 @@ services:
 
   taroco-authentication-server:
     links:
+      - taroco-registry:taroco-registry
       - taroco-config:taroco-config
     build:
       context: ./
@@ -38,6 +39,7 @@ services:
 
   taroco-upms:
     links:
+      - taroco-registry:taroco-registry
       - taroco-config:taroco-config
     build:
       context: ./
@@ -50,6 +52,7 @@ services:
 
   taroco-gateway:
     links:
+      - taroco-registry:taroco-registry
       - taroco-config:taroco-config
       - taroco-authentication-server:taroco-authentication-server
     build:
@@ -58,5 +61,6 @@ services:
     restart: always
     depends_on:
       - taroco-config
+      - taroco-authentication-server
     volumes:
       - /data/logs/taroco/:/logs/
