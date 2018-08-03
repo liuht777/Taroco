@@ -1,6 +1,4 @@
 version: '3.1'
-volumes:
-  - /data/logs/taroco/:/logs/
 services:
   taroco-registry:
     build:
@@ -9,6 +7,8 @@ services:
     restart: always
     ports:
       - 9000:9000
+    volumes:
+      - /data/logs/taroco/:/logs/
 
   taroco-config:
     links:
@@ -21,6 +21,8 @@ services:
       - EUREKA_SERVER_HOST=taroco-registry
     depends_on:
       - taroco-registry
+    volumes:
+      - /data/logs/taroco/:/logs/
 
   taroco-authentication-server:
     links:
@@ -31,6 +33,8 @@ services:
     restart: always
     depends_on:
       - taroco-config
+    volumes:
+      - /data/logs/taroco/:/logs/
 
   taroco-upms:
     links:
@@ -41,6 +45,8 @@ services:
     restart: always
     depends_on:
       - taroco-config
+    volumes:
+      - /data/logs/taroco/:/logs/
 
   taroco-gateway:
     links:
@@ -52,3 +58,5 @@ services:
     restart: always
     depends_on:
       - taroco-config
+    volumes:
+      - /data/logs/taroco/:/logs/
