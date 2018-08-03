@@ -1,0 +1,49 @@
+version: '2'
+services:
+  taroco-registry:
+    build:
+      context: ./
+      dockerfile: Dockerfile-registry
+    restart: always
+    ports:
+      - 9000:9000
+
+  taroco-config:
+    links:
+      - taroco-registry:taroco-registry
+    build:
+      context: ./
+      dockerfile: Dockerfile-config
+    restart: always
+    depends_on:
+      - taroco-registry
+
+  taroco-authentication-server:
+    links:
+      - taroco-config-dev:taroco-config-dev
+    build:
+      context: ./
+      dockerfile: Dockerfile-auth
+    restart: always
+    depends_on:
+      - taroco-config
+
+  taroco-upms-service:
+    links:
+      - taroco-config-dev:taroco-config-dev
+    build:
+      context: ./
+      dockerfile: Dockerfile-upms
+    restart: always
+    depends_on:
+      - taroco-config
+
+  taroco-gateway:
+    links:
+      - taroco-config-dev:taroco-config-dev
+    build:
+      context: ./
+      dockerfile: Dockerfile-gateway
+    restart: always
+    depends_on:
+      - taroco-config

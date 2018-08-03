@@ -1,0 +1,9 @@
+FROM java:8-jre
+MAINTAINER Taroco liuht <liuht777@qq.com>
+
+ADD ./jar/taroco-upms-service-*.jar /app/app.jar
+
+ENV JAVA_OPTS="-Xmx256m -Xms256m"
+
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dfile.encoding=UTF8 -Duser.timezone=GMT+08 -Djava.security.egd=file:/dev/./urandom -jar /app.jar"]
+
