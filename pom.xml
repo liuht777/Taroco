@@ -12,7 +12,7 @@
         <module>taroco-cloud</module>
         <module>taroco-gateway</module>
         <module>taroco-oauth2</module>
-        <module>taroco-upms-service</module>
+        <module>taroco-upms</module>
         <module>taroco-demo</module>
     </modules>
     <packaging>pom</packaging>

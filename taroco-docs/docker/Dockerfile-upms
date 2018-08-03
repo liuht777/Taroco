@@ -1,7 +1,7 @@
 FROM java:8-jre
 MAINTAINER Taroco liuht <liuht777@qq.com>
 
-ADD ./jar/taroco-upms-service-*.jar /app/app.jar
+ADD ./jar/taroco-upms-*.jar /app/app.jar
 
 ENV JAVA_OPTS="-Xmx256m -Xms256m"
 ENV CONFIG_PROFILE="test"

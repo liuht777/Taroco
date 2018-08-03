@@ -30,7 +30,7 @@ services:
     depends_on:
       - taroco-config
 
-  taroco-upms-service:
+  taroco-upms:
     links:
       - taroco-config:taroco-config
     build:
