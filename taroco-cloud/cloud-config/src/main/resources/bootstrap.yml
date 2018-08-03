@@ -2,11 +2,9 @@ server:
   port: 8888
 spring:
   application:
-    name: taroco-config-dev
+    name: taroco-config
   profiles:
     active: native
-
-spring:
   cloud:
     config:
       server:
