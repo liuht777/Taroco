@@ -1,0 +1,48 @@
+# 服务网关配置
+spring:
+  #redis配置
+  redis:
+    host: ${base.redis.host}
+    port: ${base.redis.port}
+    password: ${base.redis.password}
+    database: 0
+
+# 路由配置
+zuul:
+  retryable: true
+  #　忽略所有默认路由
+  ignored-services: '*'
+  rate-limit:
+    # 微服务实例限流指标 1000/s
+    permits-per-second: 1000
+
+security:
+  encode:
+    key: '1234567887654321' #必须16位
+  validate:
+    code: false
+    preview: true
+  sessions: stateless
+  oauth2:
+    client:
+      client-id: taroco
+      client-secret: taroco
+    resource:
+      jwt:
+         key-uri: ${base.auth.server}/oauth/token_key #解析jwt令牌所需要密钥的地址
+
+ignore:
+  urls:
+    - /mobile/**
+    - /auth/**
+    - /admin/code/*
+    - /admin/smsCode/*
+    - /admin/user/info
+    - /admin/menu/userMenu
+    - /swagger-resources/**
+    - /swagger-ui.html
+    - /*/v2/api-docs
+    - /swagger/api-docs
+    - /webjars/**
+  clients:
+    - app

@@ -1,0 +1,45 @@
+# actuator端点配置
+management:
+  security:
+    # 不使用actuator默认的安全验证，可以直接访问开启的端点
+    enabled: false
+  # 为actuator端点设置前缀,一般情况下都需要设置以便与业务path区分开来
+  context-path: /management
+
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-test/
+
+# eureka配置
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      # eureka注册中心地址
+      defaultZone: http://taroco-registry:9000/eureka/
+    # eureka客户端从eureka服务器注册表中获取服务注册信息的时间间隔（s），默认为30秒,开发阶段调小
+    registry-fetch-interval-seconds: 10
+  instance:
+      # 注册服务ip到eureka server上
+      prefer-ip-address: true
+      # 自定义服务实例id
+      instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
+      # 设置服务实例info path
+      status-page-url-path: /info
+      # 设置服务实例健康检查path
+      health-check-url-path: /health
+      # 服务实例的续约到期时间（默认90秒），也就是心跳的最大等待时间。开发阶段调小
+      lease-expiration-duration-in-seconds: 10
+      # 服务实例的续约更新时间间隔（默认30秒），也就是心跳时间。开发阶段调小
+      lease-renewal-interval-in-seconds: 6
+      metadata-map:
+        # 服务实例权重 默认100
+        weight: 100
+        # 服务actuator的管理port，如果设置了的话，Turbine监控台就获取不到对应服务的hystrix.stream。这里就需要设置，Turbine会读取这个端口。
+        management.port: ${management.port:${server.port}}
+        # 服务actuator的管理path，这里主要是为了服务治理页面能够动态读取。
+        management.path: ${management.context-path}
