@@ -27,7 +27,6 @@ services:
   taroco-authentication-server:
     links:
       - taroco-registry:taroco-registry
-      - taroco-config:taroco-config
     build:
       context: ./
       dockerfile: Dockerfile-auth
@@ -40,7 +39,6 @@ services:
   taroco-upms:
     links:
       - taroco-registry:taroco-registry
-      - taroco-config:taroco-config
     build:
       context: ./
       dockerfile: Dockerfile-upms
@@ -53,7 +51,6 @@ services:
   taroco-gateway:
     links:
       - taroco-registry:taroco-registry
-      - taroco-config:taroco-config
       - taroco-authentication-server:taroco-authentication-server
     build:
       context: ./

@@ -29,9 +29,6 @@ eureka:
   client:
     healthcheck:
       enabled: true
-    serviceUrl:
-      # eureka注册中心地址
-      defaultZone: http://taroco-registry:9000/eureka/
     # eureka客户端从eureka服务器注册表中获取服务注册信息的时间间隔（s），默认为30秒,开发阶段调小
     registry-fetch-interval-seconds: 10
   instance:

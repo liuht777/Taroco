@@ -1,10 +1,30 @@
+server:
+  port: 9009
+
 spring:
   application:
     name: taroco-upms-service
+  profiles:
+    active: dev
   cloud:
     config:
-      profile: dev
+      profile: ${spring.profiles.active}
+      label: ${spring.profiles.active}
       discovery:
         service-id: taroco-config
-server:
-  port: 9009
+
+---
+spring:
+  profiles: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+
+---
+spring:
+  profiles: test
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://taroco-registry:9000/eureka

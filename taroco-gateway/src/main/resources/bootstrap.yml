@@ -1,10 +1,30 @@
+server:
+  port: 10000
+
 spring:
   application:
     name: taroco-gateway
+  profiles:
+    active: dev
   cloud:
     config:
-      profile: dev
+      profile: ${spring.profiles.active}
+      label: ${spring.profiles.active}
       discovery:
         service-id: taroco-config
-server:
-  port: 10000
+
+---
+spring:
+  profiles: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+
+---
+spring:
+  profiles: test
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://taroco-registry:9000/eureka
