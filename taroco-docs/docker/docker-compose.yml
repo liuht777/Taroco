@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile-config
     restart: always
     environment:
-      EUREKA_SERVER_HOST=taroco-registry
+      - EUREKA_SERVER_HOST=taroco-registry
     depends_on:
       - taroco-registry
 
