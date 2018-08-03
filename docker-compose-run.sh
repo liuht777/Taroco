@@ -28,4 +28,4 @@ cp ./taroco-upms/target/taroco-upms*.jar ${JAR_DIR}
 cp ./taroco-gateway/target/taroco-gateway*.jar ${JAR_DIR}
 
 echo -- -- run docker-compose up -- --
-
+docker-compose -f ${COMPOSE_FILE} up -d --build

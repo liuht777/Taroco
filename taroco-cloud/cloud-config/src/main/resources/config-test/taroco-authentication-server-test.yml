@@ -10,7 +10,7 @@ spring:
   datasource:
     url: ${base.mysql.url}/taroco-oauth2
     username: root
-    password: root
+    password: taroco@1234
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中

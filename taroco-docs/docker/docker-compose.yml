@@ -43,6 +43,7 @@ services:
   taroco-gateway:
     links:
       - taroco-config:taroco-config
+      - taroco-authentication-server:taroco-authentication-server
     build:
       context: ./
       dockerfile: Dockerfile-gateway

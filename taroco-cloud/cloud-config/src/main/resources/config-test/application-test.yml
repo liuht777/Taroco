@@ -3,11 +3,11 @@
 # 公共配置地址
 base:
   auth:
-    server: http://127.0.0.1:9001
+    server: http://taroco-authentication-server:9001
   mysql:
-    url: jdbc:mysql://127.0.0.1:3306
+    url: jdbc:mysql://172.27.0.11:3306
   redis:
-    host: 127.0.0.1
+    host: 172.27.0.11
     port: 6379
     password: taroco
 
