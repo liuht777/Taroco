@@ -15,8 +15,9 @@ echo build jar
 mvn clean package -Dmaven.test.skip=true
 
 echo move jar to ${JAR_DIR}
-if [ ! -d ${JAR_DIR}]; then
-    mkdir ${JAR_DIR}
+if [ ! -d ${JAR_DIR}]
+    then
+        mkdir ${JAR_DIR}
 fi
 copy ./taroco-cloud/cloud-registry/target/cloud-registry*.jar ${JAR_DIR}
 copy ./taroco-cloud/cloud-config/target/cloud-config*.jar ${JAR_DIR}
@@ -24,5 +25,5 @@ copy ./cloud-oauth2/authentication-server/target/authentication-server*.jar ${JA
 copy ./taroco-upms-service/target/taroco-upms-service*.jar ${JAR_DIR}
 copy ./taroco-gateway/target/taroco-gateway*.jar ${JAR_DIR}
 
-echo docker-compose up
+echo run docker-compose up
 
