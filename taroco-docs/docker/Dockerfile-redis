@@ -1,4 +1,4 @@
-FROM redis:3.
+FROM redis:3.2
 
 MAINTAINER Taroco liuht <liuht777@qq.com>
 
