@@ -19,11 +19,11 @@ if [ ! -d ${JAR_DIR}]
     then
         mkdir ${JAR_DIR}
 fi
-copy ./taroco-cloud/cloud-registry/target/cloud-registry*.jar ${JAR_DIR}
-copy ./taroco-cloud/cloud-config/target/cloud-config*.jar ${JAR_DIR}
-copy ./cloud-oauth2/authentication-server/target/authentication-server*.jar ${JAR_DIR}
-copy ./taroco-upms-service/target/taroco-upms-service*.jar ${JAR_DIR}
-copy ./taroco-gateway/target/taroco-gateway*.jar ${JAR_DIR}
+cp ./taroco-cloud/cloud-registry/target/cloud-registry*.jar ${JAR_DIR}
+cp ./taroco-cloud/cloud-config/target/cloud-config*.jar ${JAR_DIR}
+cp ./cloud-oauth2/authentication-server/target/authentication-server*.jar ${JAR_DIR}
+cp ./taroco-upms-service/target/taroco-upms-service*.jar ${JAR_DIR}
+cp ./taroco-gateway/target/taroco-gateway*.jar ${JAR_DIR}
 
 echo run docker-compose up
 
