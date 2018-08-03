@@ -8,7 +8,7 @@ echo -- -- stop and remove old docker-compose containers -- --
 if docker-compose -f ${COMPOSE_FILE} ps
     then
         docker-compose -f ${COMPOSE_FILE} stop
-        docker-compose -f ${COMPOSE_FILE} rm
+        docker-compose -f ${COMPOSE_FILE} rm --force
 fi
 
 echo -- -- building jar -- --
@@ -29,3 +29,5 @@ cp ./taroco-gateway/target/taroco-gateway*.jar ${JAR_DIR}
 
 echo -- -- run docker-compose up -- --
 docker-compose -f ${COMPOSE_FILE} up -d --build
+
+docker images|grep none|awk '{print $3 }'|xargs docker rmi
