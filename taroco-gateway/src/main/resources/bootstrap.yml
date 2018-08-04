@@ -8,10 +8,12 @@ spring:
     active: dev
   cloud:
     config:
+      fail-fast: true
       profile: ${spring.profiles.active}
       label: ${spring.profiles.active}
       discovery:
         service-id: taroco-config
+        enabled: true
 
 ---
 spring:
