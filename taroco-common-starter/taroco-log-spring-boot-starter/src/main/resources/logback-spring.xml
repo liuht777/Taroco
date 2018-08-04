@@ -53,4 +53,5 @@
         <appender-ref ref="FileAppender"/>
     </root>
 
+    <logger name="com.netflix.discovery" level="DEBUG"/>
 </configuration>
