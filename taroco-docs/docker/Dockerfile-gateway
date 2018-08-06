@@ -6,10 +6,10 @@ ADD ./jar/taroco-gateway-*.jar /app/app.jar
 EXPOSE 10000
 
 ENV JAVA_OPTS="-Xmx256m -Xms256m"
-ENV CONFIG_PROFILE="test"
+ENV CONFIG_PROFILE=test
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS \
 -Dfile.encoding=UTF8 -Duser.timezone=GMT+08 \
 -Djava.security.egd=file:/dev/./urandom \
--Dspring.profiles.active=$CONFIG_PROFILE \
--jar /app/app.jar"]
+-jar /app/app.jar \
+--spring.profiles.active=$CONFIG_PROFILE"]

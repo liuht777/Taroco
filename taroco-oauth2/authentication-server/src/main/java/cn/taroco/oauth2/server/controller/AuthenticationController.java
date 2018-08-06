@@ -1,9 +1,8 @@
 package cn.taroco.oauth2.server.controller;
 
-import cn.taroco.common.web.Response;
 import cn.taroco.common.constants.SecurityConstants;
+import cn.taroco.common.web.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
@@ -22,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class AuthenticationController {
 
     @Autowired
-    @Qualifier("consumerTokenServices")
     private ConsumerTokenServices consumerTokenServices;
 
     /**

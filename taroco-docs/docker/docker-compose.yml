@@ -33,31 +33,34 @@ services:
     restart: always
     depends_on:
       - taroco-registry
+      - taroco-config
     volumes:
       - /data/logs/taroco/:/logs/
 
-#  taroco-upms:
-#    links:
-#      - taroco-registry:taroco-registry
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile-upms
-#    restart: always
-#    depends_on:
-#      - taroco-config
-#    volumes:
-#      - /data/logs/taroco/:/logs/
-#
-#  taroco-gateway:
-#    links:
-#      - taroco-registry:taroco-registry
-#      - taroco-authentication-server:taroco-authentication-server
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile-gateway
-#    restart: always
-#    depends_on:
-#      - taroco-config
-#      - taroco-authentication-server
-#    volumes:
-#      - /data/logs/taroco/:/logs/
+  taroco-upms:
+    links:
+      - taroco-registry
+    build:
+      context: ./
+      dockerfile: Dockerfile-upms
+    restart: always
+    depends_on:
+      - taroco-registry
+      - taroco-config
+    volumes:
+      - /data/logs/taroco/:/logs/
+
+  taroco-gateway:
+    links:
+      - taroco-registry
+      - taroco-authentication-server
+    build:
+      context: ./
+      dockerfile: Dockerfile-gateway
+    restart: always
+    depends_on:
+      - taroco-registry
+      - taroco-config
+      - taroco-authentication-server
+    volumes:
+      - /data/logs/taroco/:/logs/
