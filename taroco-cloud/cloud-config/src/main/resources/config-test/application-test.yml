@@ -9,7 +9,7 @@ base:
   redis:
     host: 172.27.0.11
     port: 6379
-    password: taroco
+    password: taroco!@#$
 
 server:
   tomcat:
