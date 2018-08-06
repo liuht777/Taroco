@@ -479,6 +479,7 @@ INSERT INTO `sys_zuul_route` VALUES ('4', '/admin/**', 'taroco-upms-service', ''
 INSERT INTO `sys_zuul_route` VALUES ('5', '/auth/**', 'taroco-authentication-server', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:31:34', '0');
 INSERT INTO `sys_zuul_route` VALUES ('6', '/taroco-registry/**', 'taroco-registry', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:32:09', '0');
 INSERT INTO `sys_zuul_route` VALUES ('7', '/taroco-monitor/**', 'taroco-monitor', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:32:09', '0');
+INSERT INTO `sys_zuul_route` VALUES ('7', '/taroco-config/**', 'taroco-config', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:32:09', '0');
 
 -- ----------------------------
 -- Table structure for zipkin_annotations
