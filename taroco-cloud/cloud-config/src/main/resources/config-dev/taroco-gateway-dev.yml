@@ -12,16 +12,23 @@ zuul:
   retryable: true
   #　忽略所有默认路由
   ignored-services: '*'
-  rate-limit:
-    # 微服务实例限流指标 1000/s
-    permits-per-second: 1000
+  ratelimit:
+    key-prefix: taroco-ratelimite
+    enabled: true
+    repository: REDIS
+    behind-proxy: true
+    policies:
+      taroco-upms-service:
+        limit: 100
+        quota: 100
+        refresh-interval: 3
 
 security:
   encode:
     key: '1234567887654321' #必须16位
   validate:
-    code: false
-    preview: true
+    code: true
+    preview: false
   sessions: stateless
   oauth2:
     client:

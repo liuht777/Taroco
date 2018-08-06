@@ -13,11 +13,6 @@ public interface MyFilterConstants {
     // ORDER constants -----------------------------------
 
     /**
-     * Filter Order for {@link PreRequestRateLimitFilter#filterOrder()}
-     */
-    int PRE_REQUEST_LIMIT_ORDER = 6;
-
-    /**
      * Filter Order for {@link XlabelRequestPreFilter#filterOrder()}
      */
     int PRE_REQUEST_XLABEL_ORDER = 7;

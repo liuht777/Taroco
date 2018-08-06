@@ -69,11 +69,14 @@ public enum DefaultError implements IError {
      * 服务端异常, 微服务服务端产生的异常
      */
     SERVER_EXCEPTION("0014", "server exception"),
-
     /**
      * 授权失败 禁止访问
      */
-    ACCESS_DENIED("0015", "access denied")
+    ACCESS_DENIED("0015", "access denied"),
+    /**
+     * 演示环境 没有权限访问
+     */
+    SHOW_AUTH_CONTROL("0016", "演示环境,没有权限访问"),
     ;
 
     String errorCode;

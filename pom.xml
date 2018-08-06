@@ -62,6 +62,7 @@
         <velocity-engine-core.version>2.0</velocity-engine-core.version>
         <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
         <sharding-jdbc-core-spring-boot-starter.version>2.0.1</sharding-jdbc-core-spring-boot-starter.version>
+        <spring-cloud-zuul-ratelimit.version>1.5.0.RELEASE</spring-cloud-zuul-ratelimit.version>
     </properties>
 
     <dependencyManagement>
@@ -91,6 +92,11 @@
                 <groupId>cn.taroco</groupId>
                 <artifactId>taroco-swagger2-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.marcosbarbero.cloud</groupId>
+                <artifactId>spring-cloud-zuul-ratelimit</artifactId>
+                <version>${spring-cloud-zuul-ratelimit.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.taroco</groupId>
