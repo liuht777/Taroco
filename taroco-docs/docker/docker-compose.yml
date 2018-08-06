@@ -25,6 +25,8 @@ services:
       context: ./
       dockerfile: Dockerfile-gateway
     restart: always
+    ports:
+      - 10000:10000
     depends_on:
       - taroco-authentication-server
     volumes:
