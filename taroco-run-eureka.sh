@@ -14,6 +14,7 @@ fi
 echo -- -- building jar -- --
 cd taroco-cloud
 mvn clean package -Dmaven.test.skip=true -pl cloud-registry,cloud-config -am
+cd ..
 
 echo -- -- move jar to ${JAR_DIR} -- --
 if [ ! -d ${JAR_DIR} ];then
@@ -23,8 +24,8 @@ fi
 rm -rf ${JAR_DIR}/cloud-registry*.jar
 rm -rf ${JAR_DIR}/cloud-config*.jar
 
-cp ./cloud-registry/target/cloud-registry*.jar ${JAR_DIR}
-cp ./cloud-config/target/cloud-config*.jar ${JAR_DIR}
+cp ./taroco-cloud/cloud-registry/target/cloud-registry*.jar ${JAR_DIR}
+cp ./taroco-cloud/cloud-config/target/cloud-config*.jar ${JAR_DIR}
 
 echo -- -- run docker-compose up -- --
 docker-compose -f ${COMPOSE_FILE} up -d --build
