@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile-auth
     restart: always
     volumes:
-      - /data/logs/taroco/:/logs/taroco-authentication-server/
+      - /data/logs/taroco-authentication-server/:/logs/taroco-authentication-server/
     networks:
       - taroco
 
@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile-upms
     restart: always
     volumes:
-      - /data/logs/taroco/:/logs/taroco-upms-service/
+      - /data/logs/taroco-upms-service/:/logs/taroco-upms-service/
     networks:
       - taroco
 
@@ -28,7 +28,7 @@ services:
     depends_on:
       - taroco-authentication-server
     volumes:
-      - /data/logs/taroco/:/logs/taroco-gateway/
+      - /data/logs/taroco-gateway/:/logs/taroco-gateway/
     networks:
       - taroco
 

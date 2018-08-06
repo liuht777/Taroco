@@ -8,7 +8,7 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - /data/logs/taroco/:/logs/taroco-registry/
+      - /data/logs/taroco-registry/:/logs/taroco-registry/
     networks:
       - taroco
 
@@ -24,7 +24,7 @@ services:
     depends_on:
       - taroco-registry
     volumes:
-      - /data/logs/taroco/:/logs/taroco-config/
+      - /data/logs/taroco-config/:/logs/taroco-config/
     networks:
       - taroco
 
