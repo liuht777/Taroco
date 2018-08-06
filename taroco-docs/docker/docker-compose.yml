@@ -32,7 +32,7 @@ services:
       dockerfile: Dockerfile-auth
     restart: always
     depends_on:
-      - taroco-config
+      - taroco-registry
     volumes:
       - /data/logs/taroco/:/logs/
 
