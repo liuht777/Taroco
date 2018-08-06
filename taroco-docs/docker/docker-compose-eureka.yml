@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+  taroco-registry:
+    build:
+      context: ./
+      dockerfile: Dockerfile-registry
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /data/logs/taroco/:/logs/taroco-registry/
+
+  taroco-config:
+    links:
+      - taroco-registry
+    build:
+      context: ./
+      dockerfile: Dockerfile-config
+    restart: always
+    environment:
+      - EUREKA_SERVER_HOST=taroco-registry
+    depends_on:
+      - taroco-registry
+    volumes:
+      - /data/logs/taroco/:/logs/taroco-config/
