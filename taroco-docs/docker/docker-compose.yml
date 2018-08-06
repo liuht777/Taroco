@@ -8,9 +8,7 @@ services:
     volumes:
       - /data/logs/taroco/:/logs/taroco-authentication-server/
     networks:
-      taroco:
-        aliases:
-          - taroco-authentication-server
+      - taroco
 
   taroco-upms:
     build:
@@ -20,9 +18,7 @@ services:
     volumes:
       - /data/logs/taroco/:/logs/taroco-upms-service/
     networks:
-      taroco:
-        aliases:
-          - taroco-upms
+      - taroco
 
   taroco-gateway:
     build:
@@ -34,9 +30,7 @@ services:
     volumes:
       - /data/logs/taroco/:/logs/taroco-gateway/
     networks:
-      taroco:
-        aliases:
-          - taroco-gateway
+      - taroco
 
 networks:
   taroco:

@@ -10,9 +10,7 @@ services:
     volumes:
       - /data/logs/taroco/:/logs/taroco-registry/
     networks:
-      taroco:
-        aliases:
-          - taroco-registry
+      - taroco
 
   taroco-config:
     links:
@@ -28,9 +26,7 @@ services:
     volumes:
       - /data/logs/taroco/:/logs/taroco-config/
     networks:
-      taroco:
-        aliases:
-          - taroco-config
+      - taroco
 
 networks:
   taroco:
