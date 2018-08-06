@@ -1,4 +1,4 @@
-version: '3.1'
+version: '2'
 services:
 
   taroco-mysql:
@@ -12,7 +12,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: taroco@1234
       MYSQL_DATABASE: taroco-oauth2
-
+    networks:
+      taroco:
+        aliases:
+          - taroco-mysql
 
   taroco-redis:
     build:
@@ -23,3 +26,9 @@ services:
       - 6379:6379
     volumes:
       - /data/redis:/data
+    networks:
+      taroco:
+        aliases:
+          - taroco-redis
+networks:
+  taroco:

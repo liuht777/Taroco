@@ -1,4 +1,4 @@
-version: '3.1'
+version: '2'
 services:
   taroco-registry:
     build:
@@ -9,6 +9,10 @@ services:
       - 9000:9000
     volumes:
       - /data/logs/taroco/:/logs/taroco-registry/
+    networks:
+      taroco:
+        aliases:
+          - taroco-registry
 
   taroco-config:
     links:
@@ -23,3 +27,10 @@ services:
       - taroco-registry
     volumes:
       - /data/logs/taroco/:/logs/taroco-config/
+    networks:
+      taroco:
+        aliases:
+          - taroco-config
+
+networks:
+  taroco:
