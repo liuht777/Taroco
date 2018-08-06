@@ -4,6 +4,7 @@ import cn.taroco.oauth2.config.AbstractSecurityConfig;
 import cn.taroco.oauth2.config.FilterIgnorePropertiesConfig;
 import cn.taroco.oauth2.server.component.mobile.MobileSecurityConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER - 1)
 @EnableConfigurationProperties(FilterIgnorePropertiesConfig.class)
+@AutoConfigureAfter(MobileSecurityConfigurer.class)
 public class WebSecurityConfig extends AbstractSecurityConfig {
 
     @Autowired
