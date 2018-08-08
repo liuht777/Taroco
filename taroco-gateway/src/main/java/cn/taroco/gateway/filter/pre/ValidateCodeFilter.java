@@ -33,7 +33,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -80,15 +82,20 @@ public class ValidateCodeFilter extends ZuulFilter {
      */
     @Override
     public boolean shouldFilter() {
-        HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
+        final HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
 
+        if (RequestMethod.OPTIONS.toString().equalsIgnoreCase(request.getMethod())) {
+            return false;
+        }
+
+        // 对指定的请求方法 进行验证码的校验
         if (!StrUtil.containsAnyIgnoreCase(request.getRequestURI(),
                 SecurityConstants.OAUTH_TOKEN_URL, SecurityConstants.MOBILE_TOKEN_URL)) {
             return false;
         }
 
         try {
-            String[] clientInfos = AuthUtils.extractAndDecodeHeader(request);
+            final String[] clientInfos = AuthUtils.extractAndDecodeHeader(request);
             if (CollUtil.containsAny(filterIgnorePropertiesConfig.getClients(), Arrays.asList(clientInfos))) {
                 return false;
             }
@@ -104,12 +111,12 @@ public class ValidateCodeFilter extends ZuulFilter {
         try {
             checkCode(RequestContext.getCurrentContext().getRequest());
         } catch (ValidateCodeException e) {
-            RequestContext ctx = RequestContext.getCurrentContext();
-            Response result = Response.failure(e.getMessage());
+            final RequestContext ctx = RequestContext.getCurrentContext();
+            final Response result = Response.failure(e.getMessage());
 
             ctx.setResponseStatusCode(478);
             ctx.setSendZuulResponse(false);
-            ctx.getResponse().setContentType("application/json;charset=UTF-8");
+            ctx.getResponse().setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             ctx.setResponseBody(JSONObject.toJSONString(result));
         }
         return null;
@@ -122,7 +129,7 @@ public class ValidateCodeFilter extends ZuulFilter {
      * @throws ValidateCodeException 验证码校验异常
      */
     private void checkCode(HttpServletRequest httpServletRequest) throws ValidateCodeException {
-        String code = httpServletRequest.getParameter("code");
+        final String code = httpServletRequest.getParameter("code");
         if (StrUtil.isBlank(code)) {
             throw new ValidateCodeException("请输入验证码");
         }
@@ -132,18 +139,18 @@ public class ValidateCodeFilter extends ZuulFilter {
             randomStr = httpServletRequest.getParameter("mobile");
         }
 
-        String key = SecurityConstants.DEFAULT_CODE_KEY + randomStr;
+        final String key = SecurityConstants.DEFAULT_CODE_KEY + randomStr;
         if (!redisTemplate.hasKey(key)) {
             throw new ValidateCodeException(EXPIRED_CAPTCHA_ERROR);
         }
 
-        Object codeObj = redisTemplate.opsForValue().get(key);
+        final Object codeObj = redisTemplate.opsForValue().get(key);
 
         if (codeObj == null) {
             throw new ValidateCodeException(EXPIRED_CAPTCHA_ERROR);
         }
 
-        String saveCode = codeObj.toString();
+        final String saveCode = codeObj.toString();
         if (StrUtil.isBlank(saveCode)) {
             redisTemplate.delete(key);
             throw new ValidateCodeException(EXPIRED_CAPTCHA_ERROR);
