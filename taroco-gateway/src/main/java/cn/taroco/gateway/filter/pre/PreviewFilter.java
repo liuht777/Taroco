@@ -28,9 +28,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * 演示环境控制
@@ -67,13 +71,21 @@ public class PreviewFilter extends ZuulFilter {
 
     @Override
     public Object run() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        Response result = Response.failure(DefaultError.SHOW_AUTH_CONTROL);
+        final RequestContext ctx = RequestContext.getCurrentContext();
+        final Response result = Response.failure(DefaultError.SHOW_AUTH_CONTROL);
+        final HttpServletResponse response = ctx.getResponse();
 
-        ctx.setResponseStatusCode(479);
+        response.setCharacterEncoding(Charset.defaultCharset().name());
+        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+        response.setStatus(479);
+        try {
+            response.getWriter().print(JSONObject.toJSONString(result));
+        } catch (IOException e1) {
+            log.error("response io异常");
+            e1.printStackTrace();
+        }
         ctx.setSendZuulResponse(false);
-        ctx.getResponse().setContentType("application/json;charset=UTF-8");
-        ctx.setResponseBody(JSONObject.toJSONString(result));
+        ctx.setResponse(response);
         return null;
     }
 }

@@ -60,7 +60,6 @@ public class OptionsTestFilter extends ZuulFilter{
             response.setHeader("Access-Control-Allow-Headers", request.getHeader(heade1));
             response.setHeader("Access-Control-Allow-Methods", request.getHeader(heade2));
             response.setHeader("Access-Control-Allow-Origin", request.getHeader(heade3));
-            ctx.setSendZuulResponse(false);
             response.setCharacterEncoding(Charset.defaultCharset().name());
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.setStatus(HttpStatus.OK.value());
@@ -70,6 +69,7 @@ public class OptionsTestFilter extends ZuulFilter{
                 log.error("response io异常");
                 e.printStackTrace();
             }
+            ctx.setSendZuulResponse(false);
             ctx.setResponse(response);
         }
         return null;

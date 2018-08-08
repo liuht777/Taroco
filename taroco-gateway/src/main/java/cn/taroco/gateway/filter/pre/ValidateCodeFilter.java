@@ -38,7 +38,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 
 /**
@@ -113,11 +115,19 @@ public class ValidateCodeFilter extends ZuulFilter {
         } catch (ValidateCodeException e) {
             final RequestContext ctx = RequestContext.getCurrentContext();
             final Response result = Response.failure(e.getMessage());
+            final HttpServletResponse response = ctx.getResponse();
 
-            ctx.setResponseStatusCode(478);
+            response.setCharacterEncoding(Charset.defaultCharset().name());
+            response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+            response.setStatus(478);
+            try {
+                response.getWriter().print(JSONObject.toJSONString(result));
+            } catch (IOException e1) {
+                log.error("response io异常");
+                e1.printStackTrace();
+            }
             ctx.setSendZuulResponse(false);
-            ctx.getResponse().setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            ctx.setResponseBody(JSONObject.toJSONString(result));
+            ctx.setResponse(response);
         }
         return null;
     }
