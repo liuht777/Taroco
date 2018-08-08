@@ -20,7 +20,7 @@ public interface MyFilterConstants {
     /**
      * Filter Order for {@link CorsFilter#filterOrder()}
      */
-    int PRE_CORS_LOG_ORDER = -10000;
+    int PRE_CORS_LOG_ORDER = -10001;
 
     /**
      * Filter Order for {@link PreRequestLogFilter#filterOrder()}
@@ -30,7 +30,7 @@ public interface MyFilterConstants {
     /**
      * Filter Order for {@link OptionsTestFilter#filterOrder()}
      */
-    int PRE_OPTIONS_TEST_ORDER = -10001;
+    int PRE_OPTIONS_TEST_ORDER = -10000;
 
     /**
      * Filter Order for {@link WebSocketFilter#filterOrder()}
