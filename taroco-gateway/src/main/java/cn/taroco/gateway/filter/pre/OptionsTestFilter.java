@@ -4,6 +4,7 @@ import cn.taroco.common.web.Response;
 import com.alibaba.fastjson.JSONObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import static cn.taroco.gateway.filter.MyFilterConstants.PRE_OPTIONS_TEST_ORDER;
 import static cn.taroco.gateway.filter.MyFilterConstants.PRE_TYPE;
@@ -24,6 +26,7 @@ import static cn.taroco.gateway.filter.MyFilterConstants.PRE_TYPE;
  * @date 2018/1/17 12:51
  */
 @Component
+@Slf4j
 public class OptionsTestFilter extends ZuulFilter{
 
     @Override
@@ -58,14 +61,16 @@ public class OptionsTestFilter extends ZuulFilter{
             response.setHeader("Access-Control-Allow-Methods", request.getHeader(heade2));
             response.setHeader("Access-Control-Allow-Origin", request.getHeader(heade3));
             ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(HttpStatus.OK.value());
-            ctx.getResponse().setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            ctx.setResponseBody(JSONObject.toJSONString(Response.success()));
+            response.setCharacterEncoding(Charset.defaultCharset().name());
+            response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+            response.setStatus(HttpStatus.OK.value());
             try {
-                response.getOutputStream().print(JSONObject.toJSONString(Response.success()));
+                response.getWriter().print(JSONObject.toJSONString(Response.success()));
             } catch (IOException e) {
+                log.error("response io异常");
                 e.printStackTrace();
             }
+            ctx.setResponse(response);
         }
         return null;
     }
