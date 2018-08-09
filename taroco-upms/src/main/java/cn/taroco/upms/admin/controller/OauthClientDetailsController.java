@@ -61,7 +61,7 @@ public class OauthClientDetailsController extends BaseController {
      * @param params 分页对象
      * @return 分页对象
      */
-    @RequestMapping("/page")
+    @GetMapping("/page")
     public Page page(@RequestParam Map<String, Object> params) {
         return sysOauthClientDetailsService.selectPage(new Query<>(params), new EntityWrapper<>());
     }

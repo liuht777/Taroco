@@ -17,14 +17,14 @@
 
 package cn.taroco.upms.admin.controller;
 
-import cn.taroco.common.web.Response;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import cn.taroco.upms.admin.service.SysZuulRouteService;
 import cn.taroco.common.constants.CommonConstant;
 import cn.taroco.common.entity.SysZuulRoute;
 import cn.taroco.common.utils.Query;
 import cn.taroco.common.web.BaseController;
+import cn.taroco.common.web.Response;
+import cn.taroco.upms.admin.service.SysZuulRouteService;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,7 +61,7 @@ public class ZuulRouteController extends BaseController {
      * @param params 分页对象
      * @return 分页对象
      */
-    @RequestMapping("/page")
+    @GetMapping("/page")
     public Page page(@RequestParam Map<String, Object> params) {
         params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
         return sysZuulRouteService.selectPage(new Query<>(params), new EntityWrapper<>());

@@ -50,7 +50,7 @@ public class LogController extends BaseController {
      * @param params 分页对象
      * @return 分页对象
      */
-    @RequestMapping("/logPage")
+    @GetMapping("/logPage")
     public Page logPage(@RequestParam Map<String, Object> params) {
         params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
         return sysLogService.selectPage(new Query<>(params), new EntityWrapper<>());
