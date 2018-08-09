@@ -1,6 +1,5 @@
 package cn.taroco.gateway.config;
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -33,8 +32,7 @@ public class SwaggerConfig {
         ParameterBuilder tokenBuilder = new ParameterBuilder();
         List<Parameter> parameterList = new ArrayList<>();
         tokenBuilder.name("Authorization")
-                .defaultValue("去其他请求中获取heard中token参数")
-                .description("令牌")
+                .description("access_token")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
                 .required(true).build();
@@ -42,7 +40,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(parameterList);
