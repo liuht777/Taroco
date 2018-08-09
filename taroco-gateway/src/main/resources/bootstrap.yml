@@ -1,6 +1,10 @@
 server:
   port: 10000
 
+logging:
+  level:
+    org.springframework.security.oauth2: debug
+
 spring:
   application:
     name: taroco-gateway

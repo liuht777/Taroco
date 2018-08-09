@@ -20,6 +20,6 @@ public class AuthorizationServerConfig extends AbstractAuthServerConfig {
      * 调用父类构造函数，设置令牌失效日期等信息
      */
     public AuthorizationServerConfig() {
-        super((int) TimeUnit.MINUTES.toSeconds(30), (int) TimeUnit.DAYS.toSeconds(1), true, true);
+        super((int) TimeUnit.MINUTES.toSeconds(30), (int) TimeUnit.HOURS.toSeconds(1), true, true);
     }
 }
