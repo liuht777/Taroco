@@ -14,11 +14,11 @@ taroco:
     version: 1.0.1-SNAPSHOT
     license: Apache License, Version 2.0
     license-url: https://www.apache.org/licenses/LICENSE-2.0.html
-    terms-of-service-url: https://gitee.com/Hyman_Liu/Taroco
+    terms-of-service-url: https://github.com/liuht777/Taroco
     contact:
       name: liuht
-      url: https://gitee.com/Hyman_Liu
-      email: xxxxx@163.com
+      url: https://github.com/liuht777
+      email: liuht777@qq.com
     base-package: cn.taroco.admin.web
     base-path: /**
     exclude-path: /error

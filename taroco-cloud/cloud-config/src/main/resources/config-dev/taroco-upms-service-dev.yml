@@ -39,3 +39,21 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true
+
+taroco:
+  # swagger2配置
+  swagger:
+    enabled: true
+    title: Taroco权限管理(UPMS)
+    description: Taroco权限管理(UPMS) RestFull Api
+    version: 1.0.1-SNAPSHOT
+    license: Apache License, Version 2.0
+    license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+    terms-of-service-url: https://github.com/liuht777/Taroco
+    contact:
+      name: liuht
+      url: https://github.com/liuht777
+      email: liuht777@qq.com
+    base-package: cn.taroco.upms.admin.controller
+    base-path: /**
+    exclude-path: /error
