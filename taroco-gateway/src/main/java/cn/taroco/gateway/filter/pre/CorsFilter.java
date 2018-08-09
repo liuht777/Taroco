@@ -10,12 +10,11 @@ import static cn.taroco.gateway.filter.MyFilterConstants.PRE_CORS_LOG_ORDER;
 import static cn.taroco.gateway.filter.MyFilterConstants.PRE_TYPE;
 
 /**
- * 描述
+ * zuul 跨域filter (不起用, 由Spring Security cros()配置)
  *
  * @author liuht
  * @date 2018/1/16 17:38
  */
-//@Component
 public class CorsFilter extends ZuulFilter {
     @Override
     public String filterType() {
