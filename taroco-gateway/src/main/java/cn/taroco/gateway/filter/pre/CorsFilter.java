@@ -2,7 +2,6 @@ package cn.taroco.gateway.filter.pre;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import static cn.taroco.gateway.filter.MyFilterConstants.PRE_TYPE;
  * @author liuht
  * @date 2018/1/16 17:38
  */
-@Component
+//@Component
 public class CorsFilter extends ZuulFilter {
     @Override
     public String filterType() {
