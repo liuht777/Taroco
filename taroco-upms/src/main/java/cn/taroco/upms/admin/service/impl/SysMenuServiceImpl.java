@@ -1,20 +1,3 @@
-/*
- *    Copyright (c) 2018-2025, liuht All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright
- * notice, this list of conditions and the following disclaimer in the
- * documentation and/or other materials provided with the distribution.
- * Neither the name of the pig4cloud.com developer nor the names of its
- * contributors may be used to endorse or promote products derived from
- * this software without specific prior written permission.
- * Author: liuht (wangiegie@gmail.com)
- */
-
 package cn.taroco.upms.admin.service.impl;
 
 import cn.taroco.common.constants.CommonConstant;
@@ -24,7 +7,6 @@ import cn.taroco.upms.admin.model.entity.SysMenu;
 import cn.taroco.upms.admin.service.SysMenuService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.xiaoleilu.hutool.lang.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -54,7 +36,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     @CacheEvict(value = "menu_details", allEntries = true)
     public Boolean deleteMenu(Integer id) {
-        Assert.isNull(id, "菜单ID不能为空");
         // 删除当前节点
         SysMenu condition1 = new SysMenu();
         condition1.setMenuId(id);
