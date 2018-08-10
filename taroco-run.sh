@@ -21,10 +21,12 @@ fi
 
 rm -rf ${JAR_DIR}/authentication-server*.jar
 rm -rf ${JAR_DIR}/taroco-upms*.jar
+rm -rf ${JAR_DIR}/taroco-admin*.jar
 rm -rf ${JAR_DIR}/taroco-gateway*.jar
 
 cp ./taroco-oauth2/authentication-server/target/authentication-server*.jar ${JAR_DIR}
 cp ./taroco-upms/target/taroco-upms*.jar ${JAR_DIR}
+cp ./taroco-cloud/cloud-admin/target/taroco-admin*.jar ${JAR_DIR}
 cp ./taroco-gateway/target/taroco-gateway*.jar ${JAR_DIR}
 
 echo -- -- run docker-compose up -- --

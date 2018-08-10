@@ -20,6 +20,16 @@ services:
     networks:
       - taroco
 
+  taroco-admin:
+    build:
+      context: ./
+      dockerfile: Dockerfile-admin
+    restart: always
+    volumes:
+      - /data/logs/taroco-admin/:/logs/taroco-admin/
+    networks:
+      - taroco
+
   taroco-gateway:
     build:
       context: ./
