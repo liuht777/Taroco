@@ -93,7 +93,9 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                                     Predicates.or(basePath)
                             )
                     )
-                    .build();
+                    .build()
+                    .securitySchemes(securitySchemes())
+                    .securityContexts(securityContexts());
 
             configurableBeanFactory.registerSingleton("defaultDocket", docket);
             docketList.add(docket);
@@ -169,7 +171,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
         List<SecurityContext> contexts = new ArrayList<>(1);
         SecurityContext securityContext = SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex("^(?!auth).*$"))
+                //.forPaths(PathSelectors.regex("^(?!auth).*$"))
                 .build();
         contexts.add(securityContext);
         return contexts;
