@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50723
 File Encoding         : 65001
 
-Date: 2018-08-10 09:11:51
+Date: 2018-08-10 17:43:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -221,18 +221,19 @@ INSERT INTO `sys_menu` VALUES ('4', '角色管理', null, 'role', null, null, '1
 INSERT INTO `sys_menu` VALUES ('5', '日志管理', null, 'log', null, null, '1', 'icon-rizhiguanli', 'views/admin/log/index', '5', '0', '2017-11-20 14:06:22', '2018-05-14 22:11:18', '0');
 INSERT INTO `sys_menu` VALUES ('6', '字典管理', null, 'dict', null, null, '1', 'icon-zygl', 'views/admin/dict/index', '6', '0', '2017-11-29 11:30:52', '2018-05-14 22:12:48', '0');
 INSERT INTO `sys_menu` VALUES ('7', '部门管理', null, 'dept', null, null, '1', 'icon-iconbmgl', 'views/admin/dept/index', '7', '0', '2018-01-20 13:17:19', '2018-05-14 22:11:16', '0');
-INSERT INTO `sys_menu` VALUES ('8', '系统监控', null, '', null, null, '-1', 'icon-iconbmgl', null, '8', '0', '2018-01-22 12:30:41', '2018-05-14 20:41:16', '0');
+INSERT INTO `sys_menu` VALUES ('8', '系统监控', null, '/taroco-admin', null, null, '-1', 'icon-iconbmgl', 'Layout', '8', '0', '2018-01-22 12:30:41', '2018-05-14 20:41:16', '0');
 INSERT INTO `sys_menu` VALUES ('9', '服务监控', null, 'http://139.224.200.249:5001', null, null, '8', 'icon-jiankong', null, '9', '0', '2018-01-23 10:53:33', '2018-08-09 09:17:40', '1');
 INSERT INTO `sys_menu` VALUES ('10', 'zipkin监控', null, 'http://139.224.200.249:5002', null, null, '8', 'icon-jiankong', null, '11', '0', '2018-01-23 10:55:18', '2018-08-09 09:17:49', '1');
 INSERT INTO `sys_menu` VALUES ('11', 'pinpoint监控', null, 'https://pinpoint.pig4cloud.com', null, null, '8', 'icon-xiazaihuancun', null, '10', '0', '2018-01-25 11:08:52', '2018-08-09 09:17:52', '1');
 INSERT INTO `sys_menu` VALUES ('12', '缓存状态', null, 'http://139.224.200.249:8585', null, null, '8', 'icon-ecs-status', null, '12', '0', '2018-01-23 10:56:11', '2018-08-09 09:17:55', '1');
 INSERT INTO `sys_menu` VALUES ('13', 'ELK状态', null, 'http://139.224.200.249:5601', null, null, '8', 'icon-ecs-status', null, '13', '0', '2018-01-23 10:55:47', '2018-08-09 09:17:58', '1');
-INSERT INTO `sys_menu` VALUES ('14', '接口文档', null, 'http://111.231.192.110:10000/swagger-ui.html', null, null, '8', 'icon-wendangdocument72', null, '14', '0', '2018-01-23 10:56:43', '2018-08-09 09:19:18', '0');
+INSERT INTO `sys_menu` VALUES ('14', '接口文档', null, 'http://111.231.192.110:10000/swagger-ui.html', '', null, '8', 'icon-wendangdocument72', null, '2', '0', '2018-01-23 10:56:43', '2018-08-09 09:19:18', '0');
 INSERT INTO `sys_menu` VALUES ('15', '任务监控', null, 'http://139.224.200.249:8899', null, null, '8', 'icon-jiankong', null, '15', '0', '2018-01-23 10:55:18', '2018-08-09 09:18:15', '1');
 INSERT INTO `sys_menu` VALUES ('21', '用户查看', '', null, '/admin/user/**', 'GET', '2', null, null, null, '1', '2017-11-07 20:58:05', '2018-02-04 14:28:49', '0');
 INSERT INTO `sys_menu` VALUES ('22', '用户新增', 'sys_user_add', null, '/admin/user/*', 'POST', '2', null, null, null, '1', '2017-11-08 09:52:09', '2017-12-04 16:31:10', '0');
 INSERT INTO `sys_menu` VALUES ('23', '用户修改', 'sys_user_upd', null, '/admin/user/**', 'PUT', '2', null, null, null, '1', '2017-11-08 09:52:48', '2018-01-17 17:40:01', '0');
 INSERT INTO `sys_menu` VALUES ('24', '用户删除', 'sys_user_del', null, '/admin/user/*', 'DELETE', '2', null, null, null, '1', '2017-11-08 09:54:01', '2017-12-04 16:31:18', '0');
+INSERT INTO `sys_menu` VALUES ('25', '服务监控', null, 'service', null, null, '8', 'icon-dongtai', 'views/service/index', '1', '0', '2018-08-10 08:09:16', '2018-08-10 08:09:55', '0');
 INSERT INTO `sys_menu` VALUES ('31', '菜单查看', null, null, '/admin/menu/**', 'GET', '3', null, null, null, '1', '2017-11-08 09:57:56', '2017-11-14 17:29:17', '0');
 INSERT INTO `sys_menu` VALUES ('32', '菜单新增', 'sys_menu_add', null, '/admin/menu/*', 'POST', '3', null, null, null, '1', '2017-11-08 10:15:53', '2018-01-20 14:37:50', '0');
 INSERT INTO `sys_menu` VALUES ('33', '菜单修改', 'sys_menu_edit', null, '/admin/menu/*', 'PUT', '3', null, null, null, '1', '2017-11-08 10:16:23', '2018-01-20 14:37:56', '0');
@@ -262,6 +263,10 @@ INSERT INTO `sys_menu` VALUES ('111', '路由查看', null, null, '/admin/route/
 INSERT INTO `sys_menu` VALUES ('112', '路由新增', 'sys_route_add', null, '/admin/route/**', 'POST', '110', null, null, null, '1', '2018-05-15 21:52:22', '2018-05-15 21:53:46', '0');
 INSERT INTO `sys_menu` VALUES ('113', '路由修改', 'sys_route_upd', null, '/admin/route/**', 'PUT', '110', null, null, null, '1', '2018-05-15 21:55:38', null, '0');
 INSERT INTO `sys_menu` VALUES ('114', '路由删除', 'sys_route_del', null, '/admin/route/**', 'DELETE', '110', null, null, null, '1', '2018-05-15 21:56:45', null, '0');
+INSERT INTO `sys_menu` VALUES ('120', '图标管理', null, 'iconfont', '', null, '1', null, 'page/iconfont/index', '9', '0', '2018-08-10 07:15:39', '2018-08-10 07:57:50', '1');
+INSERT INTO `sys_menu` VALUES ('251', '服务查询', null, null, '/taroco-admin/api/**', 'GET', '25', null, null, '1', null, '2018-08-10 08:25:50', '2018-08-10 08:26:05', '0');
+INSERT INTO `sys_menu` VALUES ('252', '设置权重和标签', 'taroco_admin_set_weight', null, '/taroco-registry/eureka/apps/**', 'PUT', '25', null, null, '2', '1', '2018-08-10 08:54:10', '2018-08-10 08:54:47', '0');
+INSERT INTO `sys_menu` VALUES ('253', '服务日志级别设置', null, null, '/taroco-admin/api/applications/*/loggers/*', 'POST', '25', null, null, '1', null, '2018-08-10 09:17:06', null, '0');
 
 -- ----------------------------
 -- Table structure for sys_oauth_client_details
@@ -348,17 +353,12 @@ INSERT INTO `sys_role_menu` VALUES ('1', '5');
 INSERT INTO `sys_role_menu` VALUES ('1', '6');
 INSERT INTO `sys_role_menu` VALUES ('1', '7');
 INSERT INTO `sys_role_menu` VALUES ('1', '8');
-INSERT INTO `sys_role_menu` VALUES ('1', '9');
-INSERT INTO `sys_role_menu` VALUES ('1', '10');
-INSERT INTO `sys_role_menu` VALUES ('1', '11');
-INSERT INTO `sys_role_menu` VALUES ('1', '12');
-INSERT INTO `sys_role_menu` VALUES ('1', '13');
 INSERT INTO `sys_role_menu` VALUES ('1', '14');
-INSERT INTO `sys_role_menu` VALUES ('1', '15');
 INSERT INTO `sys_role_menu` VALUES ('1', '21');
 INSERT INTO `sys_role_menu` VALUES ('1', '22');
 INSERT INTO `sys_role_menu` VALUES ('1', '23');
 INSERT INTO `sys_role_menu` VALUES ('1', '24');
+INSERT INTO `sys_role_menu` VALUES ('1', '25');
 INSERT INTO `sys_role_menu` VALUES ('1', '31');
 INSERT INTO `sys_role_menu` VALUES ('1', '32');
 INSERT INTO `sys_role_menu` VALUES ('1', '33');
@@ -388,6 +388,9 @@ INSERT INTO `sys_role_menu` VALUES ('1', '111');
 INSERT INTO `sys_role_menu` VALUES ('1', '112');
 INSERT INTO `sys_role_menu` VALUES ('1', '113');
 INSERT INTO `sys_role_menu` VALUES ('1', '114');
+INSERT INTO `sys_role_menu` VALUES ('1', '251');
+INSERT INTO `sys_role_menu` VALUES ('1', '252');
+INSERT INTO `sys_role_menu` VALUES ('1', '253');
 INSERT INTO `sys_role_menu` VALUES ('14', '1');
 INSERT INTO `sys_role_menu` VALUES ('14', '2');
 INSERT INTO `sys_role_menu` VALUES ('14', '3');
@@ -396,13 +399,7 @@ INSERT INTO `sys_role_menu` VALUES ('14', '5');
 INSERT INTO `sys_role_menu` VALUES ('14', '6');
 INSERT INTO `sys_role_menu` VALUES ('14', '7');
 INSERT INTO `sys_role_menu` VALUES ('14', '8');
-INSERT INTO `sys_role_menu` VALUES ('14', '9');
-INSERT INTO `sys_role_menu` VALUES ('14', '10');
-INSERT INTO `sys_role_menu` VALUES ('14', '11');
-INSERT INTO `sys_role_menu` VALUES ('14', '12');
-INSERT INTO `sys_role_menu` VALUES ('14', '13');
 INSERT INTO `sys_role_menu` VALUES ('14', '14');
-INSERT INTO `sys_role_menu` VALUES ('14', '15');
 INSERT INTO `sys_role_menu` VALUES ('14', '21');
 INSERT INTO `sys_role_menu` VALUES ('14', '31');
 INSERT INTO `sys_role_menu` VALUES ('14', '41');
@@ -434,7 +431,7 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1', 'admin', '$2a$10$vg5QNHhCknAqevx9vM2s5esllJEzF/pa8VZXtFYHhhOhUcCw/GWyS', null, '17034642111', null, '1', '2018-04-20 07:15:18', '2018-07-30 17:35:51', '0');
-INSERT INTO `sys_user` VALUES ('4', 'taroco', '$2a$10$vg5QNHhCknAqevx9vM2s5esllJEzF/pa8VZXtFYHhhOhUcCw/GWyS', null, '17034642118', null, '1', '2018-04-22 11:39:07', '2018-08-09 16:47:55', '0');
+INSERT INTO `sys_user` VALUES ('5', 'test', '$2a$10$wPagc17x/vDAYJYpS22gZeXJ43oOpJ5r9JX.QBN89VJgNcw.Q5yNS', null, '18181956331', null, '1', '2018-08-10 07:59:06', '2018-08-10 15:59:46', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -450,7 +447,7 @@ CREATE TABLE `sys_user_role` (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('1', '1');
-INSERT INTO `sys_user_role` VALUES ('4', '14');
+INSERT INTO `sys_user_role` VALUES ('5', '14');
 
 -- ----------------------------
 -- Table structure for sys_zuul_route
@@ -469,7 +466,7 @@ CREATE TABLE `sys_zuul_route` (
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `del_flag` char(1) DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COMMENT='动态路由配置表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='动态路由配置表';
 
 -- ----------------------------
 -- Records of sys_zuul_route
@@ -480,6 +477,7 @@ INSERT INTO `sys_zuul_route` VALUES ('5', '/auth/**', 'taroco-authentication-ser
 INSERT INTO `sys_zuul_route` VALUES ('6', '/taroco-registry/**', 'taroco-registry', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:32:09', '0');
 INSERT INTO `sys_zuul_route` VALUES ('7', '/taroco-monitor/**', 'taroco-monitor', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:32:09', '0');
 INSERT INTO `sys_zuul_route` VALUES ('8', '/taroco-config/**', 'taroco-config', null, '1', '1', '1', null, '2018-08-06 03:36:21', '2018-08-06 11:36:16', '0');
+INSERT INTO `sys_zuul_route` VALUES ('9', '/taroco-demo1/**', 'taroco-demo1', '', '1', '1', '1', '', '2018-08-10 02:29:13', '2018-08-10 14:24:44', '1');
 
 -- ----------------------------
 -- Table structure for zipkin_annotations

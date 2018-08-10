@@ -16,7 +16,7 @@ server:
 eureka:
   client:
     # 表示是否注册自身到eureka服务器
-    register-with-eureka: false
+    register-with-eureka: true
     # 表示是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false。
     fetch-registry: false
     serviceUrl:
