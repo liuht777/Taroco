@@ -17,10 +17,9 @@ import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.Parameter;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.*;
@@ -151,7 +150,9 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                                     Predicates.or(basePath)
                             )
                     )
-                    .build();
+                    .build()
+                    .securitySchemes(securitySchemes())
+                    .securityContexts(securityContexts());
 
             configurableBeanFactory.registerSingleton(groupName, docket);
             docketList.add(docket);
@@ -162,6 +163,32 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
+    }
+
+    private List<SecurityContext> securityContexts() {
+        List<SecurityContext> contexts = new ArrayList<>(1);
+        SecurityContext securityContext = SecurityContext.builder()
+                .securityReferences(defaultAuth())
+                .forPaths(PathSelectors.regex("^(?!auth).*$"))
+                .build();
+        contexts.add(securityContext);
+        return contexts;
+    }
+
+    private List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        List<SecurityReference> references = new ArrayList<>(1);
+        references.add(new SecurityReference("Authorization", authorizationScopes));
+        return references;
+    }
+
+    private List<ApiKey> securitySchemes() {
+        List<ApiKey> apiKeys = new ArrayList<>(1);
+        ApiKey apiKey = new ApiKey("Authorization", "Authorization", "header");
+        apiKeys.add(apiKey);
+        return apiKeys;
     }
 
     private List<Parameter> buildGlobalOperationParametersFromSwaggerProperties(
