@@ -23,6 +23,8 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   instance:
     hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
   server:
     # 关闭自我保护模式(生产环境不建议关闭)
     enable-self-preservation: false
