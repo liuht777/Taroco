@@ -3,6 +3,8 @@ MAINTAINER Taroco liuht <liuht777@qq.com>
 
 ADD ./jar/cloud-monitor-*.jar /app/app.jar
 
+EXPOSE 10002
+
 ENV JAVA_OPTS="-Xmx256m -Xms256m"
 ENV CONFIG_PROFILE="test"
 

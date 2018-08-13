@@ -35,6 +35,8 @@ services:
       context: ./
       dockerfile: Dockerfile-monitor
     restart: always
+    ports:
+      - 10002:10002
     volumes:
       - /data/logs/taroco-monitor/:/logs/taroco-monitor/
     networks:
