@@ -30,6 +30,16 @@ services:
     networks:
       - taroco
 
+  taroco-monitor:
+    build:
+      context: ./
+      dockerfile: Dockerfile-monitor
+    restart: always
+    volumes:
+      - /data/logs/taroco-monitor/:/logs/taroco-monitor/
+    networks:
+      - taroco
+
   taroco-gateway:
     build:
       context: ./

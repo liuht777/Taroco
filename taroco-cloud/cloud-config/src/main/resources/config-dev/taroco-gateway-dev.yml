@@ -40,6 +40,8 @@ security:
 
 ignore:
   urls:
+    - /routes
+    - /filters
     - /mobile/**
     - /auth/**
     - /admin/code/*
