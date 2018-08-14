@@ -1,6 +1,5 @@
 package cn.taroco.gateway.config;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -27,18 +26,4 @@ public class CorsConfigration {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
-
-    /**
-     * 配置过滤器
-     */
-    @Bean
-    public FilterRegistrationBean someFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(new CorsFilterExtend());
-        registration.addUrlPatterns("/*");
-        registration.setName("corsFilterExtend");
-        registration.setOrder(Integer.MAX_VALUE);
-        return registration;
-    }
-
 }
