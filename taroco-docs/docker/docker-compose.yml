@@ -25,6 +25,8 @@ services:
       context: ./
       dockerfile: Dockerfile-admin
     restart: always
+    ports:
+      - 10001:10001
     volumes:
       - /data/logs/taroco-admin/:/logs/taroco-admin/
     networks:
