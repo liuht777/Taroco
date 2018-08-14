@@ -56,10 +56,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
         //允许使用iframe 嵌套，避免swagger-ui 不被加载的问题
-        http.headers().frameOptions().disable()
-        // 如果使用跨域,就导致axios不能获取正常error.response
-        // 会去找CorsFilter这个bean 没有的话就是默认配置
-        .and().cors();
+        http.headers().frameOptions().disable();
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http
                 .authorizeRequests();
         filterIgnorePropertiesConfig.getUrls().forEach(url -> registry.antMatchers(url).permitAll());

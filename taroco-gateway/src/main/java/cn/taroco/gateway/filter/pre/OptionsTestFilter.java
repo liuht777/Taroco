@@ -7,7 +7,6 @@ import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,7 +24,7 @@ import static cn.taroco.gateway.filter.MyFilterConstants.PRE_TYPE;
  * @author liuht
  * @date 2018/1/17 12:51
  */
-@Component
+//@Component
 @Slf4j
 public class OptionsTestFilter extends ZuulFilter{
 
