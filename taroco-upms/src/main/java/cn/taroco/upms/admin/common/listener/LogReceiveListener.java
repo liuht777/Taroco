@@ -17,7 +17,7 @@
 //
 //package cn.taroco.upms.admin.common.listener;
 //
-//import cn.taroco.common.constants.MqQueueConstant;
+//import cn.taroco.common.constant.MqQueueConstant;
 //import cn.taroco.common.entity.SysLog;
 //import cn.taroco.common.vo.LogVO;
 //import cn.taroco.upms.admin.service.SysLogService;

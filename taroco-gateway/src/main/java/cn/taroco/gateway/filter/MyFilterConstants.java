@@ -10,7 +10,7 @@ import com.netflix.zuul.ZuulFilter;
  */
 public interface MyFilterConstants {
 
-    // ORDER constants -----------------------------------
+    // ORDER constant -----------------------------------
 
     /**
      * Filter Order for {@link XlabelRequestPreFilter#filterOrder()}
@@ -42,7 +42,7 @@ public interface MyFilterConstants {
      */
     int POST_REQUEST_XLABEL_ORDER = 0;
 
-    // Zuul Filter TYPE constants -----------------------------------
+    // Zuul Filter TYPE constant -----------------------------------
 
     /**
      * {@link ZuulFilter#filterType()} error type.

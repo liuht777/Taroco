@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.taroco.common.redis.TarocoRedisAutoConfigure
+cn.taroco.common.redis.TarocoRedisAutoConfigure,\
+cn.taroco.common.redis.limit.config.RedisLimitAutoConfigurer

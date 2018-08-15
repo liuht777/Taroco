@@ -1,5 +1,6 @@
 package cn.taroco.common.redis;
 
+import cn.taroco.common.redis.template.TarocoRedisRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;

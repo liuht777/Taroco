@@ -1,5 +1,6 @@
 package cn.taroco.common.swagger2;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.ArrayList;
@@ -13,11 +14,11 @@ import java.util.Map;
  * @author liuht
  * @date 2017/11/18 9:17
  */
+@Data
 @ConfigurationProperties("taroco.swagger")
 public class SwaggerProperties {
     /**是否开启swagger**/
     private Boolean enabled;
-
     /**标题**/
     private String title = "";
     /**描述**/
@@ -108,8 +109,8 @@ public class SwaggerProperties {
         }
     }
 
+    @Data
     public static class DocketInfo {
-
         /**标题**/
         private String title = "";
         /**描述**/
@@ -134,96 +135,9 @@ public class SwaggerProperties {
         private List<String> excludePath = new ArrayList<>();
 
         private List<GlobalOperationParameter> globalOperationParameters;
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public String getVersion() {
-            return version;
-        }
-
-        public void setVersion(String version) {
-            this.version = version;
-        }
-
-        public String getLicense() {
-            return license;
-        }
-
-        public void setLicense(String license) {
-            this.license = license;
-        }
-
-        public String getLicenseUrl() {
-            return licenseUrl;
-        }
-
-        public void setLicenseUrl(String licenseUrl) {
-            this.licenseUrl = licenseUrl;
-        }
-
-        public String getTermsOfServiceUrl() {
-            return termsOfServiceUrl;
-        }
-
-        public void setTermsOfServiceUrl(String termsOfServiceUrl) {
-            this.termsOfServiceUrl = termsOfServiceUrl;
-        }
-
-        public Contact getContact() {
-            return contact;
-        }
-
-        public void setContact(Contact contact) {
-            this.contact = contact;
-        }
-
-        public String getBasePackage() {
-            return basePackage;
-        }
-
-        public void setBasePackage(String basePackage) {
-            this.basePackage = basePackage;
-        }
-
-        public List<String> getBasePath() {
-            return basePath;
-        }
-
-        public void setBasePath(List<String> basePath) {
-            this.basePath = basePath;
-        }
-
-        public List<String> getExcludePath() {
-            return excludePath;
-        }
-
-        public void setExcludePath(List<String> excludePath) {
-            this.excludePath = excludePath;
-        }
-
-        public List<GlobalOperationParameter> getGlobalOperationParameters() {
-            return globalOperationParameters;
-        }
-
-        public void setGlobalOperationParameters(List<GlobalOperationParameter> globalOperationParameters) {
-            this.globalOperationParameters = globalOperationParameters;
-        }
     }
 
+    @Data
     public static class Contact {
 
         /**联系人**/
@@ -232,141 +146,5 @@ public class SwaggerProperties {
         private String url = "";
         /**联系人email**/
         private String email = "";
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getLicense() {
-        return license;
-    }
-
-    public void setLicense(String license) {
-        this.license = license;
-    }
-
-    public String getLicenseUrl() {
-        return licenseUrl;
-    }
-
-    public void setLicenseUrl(String licenseUrl) {
-        this.licenseUrl = licenseUrl;
-    }
-
-    public String getTermsOfServiceUrl() {
-        return termsOfServiceUrl;
-    }
-
-    public void setTermsOfServiceUrl(String termsOfServiceUrl) {
-        this.termsOfServiceUrl = termsOfServiceUrl;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
-    public String getBasePackage() {
-        return basePackage;
-    }
-
-    public void setBasePackage(String basePackage) {
-        this.basePackage = basePackage;
-    }
-
-    public List<String> getBasePath() {
-        return basePath;
-    }
-
-    public void setBasePath(List<String> basePath) {
-        this.basePath = basePath;
-    }
-
-    public List<String> getExcludePath() {
-        return excludePath;
-    }
-
-    public void setExcludePath(List<String> excludePath) {
-        this.excludePath = excludePath;
-    }
-
-    public Map<String, DocketInfo> getDocket() {
-        return docket;
-    }
-
-    public void setDocket(Map<String, DocketInfo> docket) {
-        this.docket = docket;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public List<GlobalOperationParameter> getGlobalOperationParameters() {
-        return globalOperationParameters;
-    }
-
-    public void setGlobalOperationParameters(List<GlobalOperationParameter> globalOperationParameters) {
-        this.globalOperationParameters = globalOperationParameters;
     }
 }

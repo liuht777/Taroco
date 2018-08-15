@@ -1,7 +1,6 @@
-package cn.taroco.common.redis;
+package cn.taroco.common.redis.template;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.RedisClusterNode;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisServerCommands;
@@ -21,12 +20,8 @@ import java.util.*;
  * redis 基本操作 可扩展,基本够用了
  * @author liuht
  */
+@Slf4j
 public class TarocoRedisRepository {
-
-    /**
-     * Logger
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(TarocoRedisRepository.class);
 
     /**
      * 默认编码
@@ -88,7 +83,7 @@ public class TarocoRedisRepository {
         redisTemplate.execute((RedisCallback<Long>) connection -> {
             connection.set(key, value);
             connection.expire(key, time);
-            LOGGER.info("[redisTemplate redis]放入 缓存  url:{} ========缓存时间为{}秒", key, time);
+            log.info("[redisTemplate redis]放入 缓存  url:{} ========缓存时间为{}秒", key, time);
             return 1L;
         });
     }
@@ -107,7 +102,7 @@ public class TarocoRedisRepository {
             byte[] values = serializer.serialize(value);
             connection.set(keys, values);
             connection.expire(keys, time);
-            LOGGER.info("[redisTemplate redis]放入 缓存  url:{} ========缓存时间为{}秒", key, time);
+            log.info("[redisTemplate redis]放入 缓存  url:{} ========缓存时间为{}秒", key, time);
             return 1L;
         });
     }
@@ -127,7 +122,7 @@ public class TarocoRedisRepository {
                 byte[] bValues = serializer.serialize(values[i]);
                 connection.set(bKeys, bValues);
                 connection.expire(bKeys, time);
-                LOGGER.info("[redisTemplate redis]放入 缓存  url:{} ========缓存时间为:{}秒", keys[i], time);
+                log.info("[redisTemplate redis]放入 缓存  url:{} ========缓存时间为:{}秒", keys[i], time);
             }
             return 1L;
         });
@@ -147,7 +142,7 @@ public class TarocoRedisRepository {
                 byte[] bKeys = serializer.serialize(keys[i]);
                 byte[] bValues = serializer.serialize(values[i]);
                 connection.set(bKeys, bValues);
-                LOGGER.info("[redisTemplate redis]放入 缓存  url:{}", keys[i]);
+                log.info("[redisTemplate redis]放入 缓存  url:{}", keys[i]);
             }
             return 1L;
         });
@@ -166,7 +161,7 @@ public class TarocoRedisRepository {
             byte[] keys = serializer.serialize(key);
             byte[] values = serializer.serialize(value);
             connection.set(keys, values);
-            LOGGER.info("[redisTemplate redis]放入 缓存  url:{}", key);
+            log.info("[redisTemplate redis]放入 缓存  url:{}", key);
             return 1L;
         });
     }
@@ -212,7 +207,7 @@ public class TarocoRedisRepository {
      */
     public byte[] get(final byte[] key) {
         byte[] result = redisTemplate.execute((RedisCallback<byte[]>) connection -> connection.get(key));
-        LOGGER.info("[redisTemplate redis]取出 缓存  url:{} ", key);
+        log.info("[redisTemplate redis]取出 缓存  url:{} ", key);
         return result;
     }
 
@@ -229,7 +224,7 @@ public class TarocoRedisRepository {
             byte[] values = connection.get(keys);
             return serializer.deserialize(values);
         });
-        LOGGER.info("[redisTemplate redis]取出 缓存  url:{} ", key);
+        log.info("[redisTemplate redis]取出 缓存  url:{} ", key);
         return resultStr;
     }
 
@@ -241,7 +236,7 @@ public class TarocoRedisRepository {
      * @return the keys values
      */
     public Map<String, String> getKeysValues(final String keyPatten) {
-        LOGGER.info("[redisTemplate redis]  getValues()  patten={} ", keyPatten);
+        log.info("[redisTemplate redis]  getValues()  patten={} ", keyPatten);
         return redisTemplate.execute((RedisCallback<Map<String, String>>) connection -> {
             RedisSerializer<String> serializer = getRedisSerializer();
             Map<String, String> maps = new HashMap<>();
@@ -273,7 +268,7 @@ public class TarocoRedisRepository {
      * @param hashValue the hash value
      */
     public void putHashValue(String key, String hashKey, String hashValue) {
-        LOGGER.info("[redisTemplate redis]  putHashValue()  key={},hashKey={},hashValue={} ", key, hashKey, hashValue);
+        log.info("[redisTemplate redis]  putHashValue()  key={},hashKey={},hashValue={} ", key, hashKey, hashValue);
         opsForHash().put(key, hashKey, hashValue);
     }
 
@@ -285,7 +280,7 @@ public class TarocoRedisRepository {
      * @return the hash values
      */
     public Object getHashValues(String key, String hashKey) {
-        LOGGER.info("[redisTemplate redis]  getHashValues()  key={},hashKey={}", key, hashKey);
+        log.info("[redisTemplate redis]  getHashValues()  key={},hashKey={}", key, hashKey);
         return opsForHash().get(key, hashKey);
     }
 
@@ -296,7 +291,7 @@ public class TarocoRedisRepository {
      * @param hashKeys the hash keys
      */
     public void delHashValues(String key, Object... hashKeys) {
-        LOGGER.info("[redisTemplate redis]  delHashValues()  key={}", key);
+        log.info("[redisTemplate redis]  delHashValues()  key={}", key);
         opsForHash().delete(key, hashKeys);
     }
 
@@ -307,7 +302,7 @@ public class TarocoRedisRepository {
      * @return the hash value
      */
     public Map<String, String> getHashValue(String key) {
-        LOGGER.info("[redisTemplate redis]  getHashValue()  key={}", key);
+        log.info("[redisTemplate redis]  getHashValue()  key={}", key);
         return opsForHash().entries(key);
     }
 
