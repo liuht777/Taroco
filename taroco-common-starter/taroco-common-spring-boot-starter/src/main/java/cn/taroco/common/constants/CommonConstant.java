@@ -88,4 +88,8 @@ public interface CommonConstant {
      * 路由信息Redis保存的key
      */
     String ROUTE_KEY = "_ROUTE_KEY";
+    /**
+     * 超级管理员用户名
+     */
+    String ADMIN_USER_NAME = "admin";
 }

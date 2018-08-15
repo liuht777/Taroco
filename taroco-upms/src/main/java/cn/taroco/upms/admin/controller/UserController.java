@@ -80,6 +80,9 @@ public class UserController extends BaseController {
     @DeleteMapping("/{id}")
     public Response userDel(@PathVariable Integer id) {
         SysUser sysUser = userService.selectById(id);
+        if (CommonConstant.ADMIN_USER_NAME.equals(sysUser.getUsername())) {
+            return Response.failure("不允许删除超级管理员");
+        }
         return Response.success(userService.deleteUserById(sysUser));
     }
 
