@@ -28,7 +28,7 @@ security:
     key: '1234567887654321' #必须16位
   validate:
     code: true
-    preview: false
+    preview: true
   sessions: stateless
   oauth2:
     client:
