@@ -32,7 +32,7 @@ public class RedisLimitAutoConfigurer extends WebMvcConfigurerAdapter {
 
     @Bean
     public RedisLimit redisLimit() {
-        return new RedisLimit.Builder(jedisConnectionFactory, RedisToolsConstant.SINGLE)
+        return new RedisLimit.Builder(jedisConnectionFactory, limitProperties.getType())
                 .limit(limitProperties.getValue())
                 .build();
     }
