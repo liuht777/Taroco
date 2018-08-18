@@ -12,16 +12,6 @@ zuul:
   retryable: true
   #　忽略所有默认路由
   ignored-services: '*'
-  ratelimit:
-    key-prefix: taroco-ratelimite
-    enabled: true
-    repository: REDIS
-    behind-proxy: true
-    policies:
-      taroco-upms-service:
-        limit: 100
-        quota: 100
-        refresh-interval: 3
 
 security:
   encode:
