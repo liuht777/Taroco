@@ -1,20 +1,3 @@
-/*
- *    Copyright (c) 2018-2025, lengleng All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright
- * notice, this list of conditions and the following disclaimer in the
- * documentation and/or other materials provided with the distribution.
- * Neither the name of the pig4cloud.com developer nor the names of its
- * contributors may be used to endorse or promote products derived from
- * this software without specific prior written permission.
- * Author: lengleng (wangiegie@gmail.com)
- */
-
 package cn.taroco.oauth2.config.util;
 
 import cn.taroco.common.constants.CommonConstant;
@@ -41,7 +24,7 @@ public class AuthUtils {
      *
      * @param header header中的参数
      * @throws ServerException if the Basic header is not present or is not valid
-     *                          Base64
+     *                         Base64
      */
     public static String[] extractAndDecodeHeader(String header)
             throws IOException {
@@ -66,7 +49,7 @@ public class AuthUtils {
                     DefaultError.PARAMETER_NOT_MATCH_RULE
             );
         }
-        return new String[] {token.substring(0, delim), token.substring(delim + 1)};
+        return new String[]{token.substring(0, delim), token.substring(delim + 1)};
     }
 
     /**

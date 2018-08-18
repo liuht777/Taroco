@@ -12,7 +12,7 @@
  * Neither the name of the pig4cloud.com developer nor the names of its
  * contributors may be used to endorse or promote products derived from
  * this software without specific prior written permission.
- * Author: liuht (wangiegie@gmail.com)
+ * Author: liuht
  */
 
 package cn.taroco.upms.admin.service;
