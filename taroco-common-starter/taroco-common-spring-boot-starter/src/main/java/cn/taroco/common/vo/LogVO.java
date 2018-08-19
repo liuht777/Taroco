@@ -23,6 +23,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 日志记录VO
+ *
  * @author liuht
  * @date 2017/11/20
  */

@@ -1,12 +1,12 @@
 turbine:
   # 要监测的Eureka服务列表
-  app-config: taroco-gateway,taroco-authentication-server,taroco-upms-service
+  app-config: taroco-gateway,taroco-authentication-server,taroco-rbac-service
   # 默认从instance的homePageUrl拉取,设置了management.context-path并且没有重新设置homePageUrl的话,这里就要加上management.context-path
   instanceUrlSuffix: ${management.context-path}/hystrix.stream
   # 表示同一主机上的服务通过host和port的组合来进行区分，默认情况下是使用host来区分，这样会使本地调试有问题
   combine-host-port: true
   aggregator:
       # 服务集群名称,默认serviceId,这里必须大写
-      clusterConfig: TAROCO-GATEWAY,TAROCO-AUTHENTICATION-SERVER,TAROCO-UPMS-SERVICE
+      clusterConfig: TAROCO-GATEWAY,TAROCO-AUTHENTICATION-SERVER,TAROCO-RBAC-SERVICE
   # 所有的服务都用一个default集群名称
   #cluster-name-expression: new String("default")

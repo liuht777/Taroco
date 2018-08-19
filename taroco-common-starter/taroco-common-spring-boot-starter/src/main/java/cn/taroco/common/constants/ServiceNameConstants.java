@@ -11,7 +11,7 @@ public interface ServiceNameConstants {
     /**
      * 用户权限服务
      */
-    String UPMS_SERVICE = "taroco-upms-service";
+    String RBAC_SERVICE = "taroco-rbac-service";
 
     /**
      * 认证服务

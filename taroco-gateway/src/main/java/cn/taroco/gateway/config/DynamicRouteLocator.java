@@ -84,7 +84,7 @@ public class DynamicRouteLocator extends DiscoveryClientRouteLocator {
     }
 
     /**
-     * Redis中保存的，没有从upms拉去，避免启动链路依赖问题（取舍），网关依赖业务模块的问题
+     * Redis中保存的，没有从rbac拉去，避免启动链路依赖问题（取舍），网关依赖业务模块的问题
      *
      * @return
      */

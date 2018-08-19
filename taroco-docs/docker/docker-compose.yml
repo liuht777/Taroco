@@ -10,13 +10,13 @@ services:
     networks:
       - taroco
 
-  taroco-upms:
+  taroco-rbac:
     build:
       context: ./
-      dockerfile: Dockerfile-upms
+      dockerfile: Dockerfile-rbac
     restart: always
     volumes:
-      - /data/logs/taroco-upms-service/:/logs/taroco-upms-service/
+      - /data/logs/taroco-rbac-service/:/logs/taroco-rbac-service/
     networks:
       - taroco
 

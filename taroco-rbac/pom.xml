@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>taroco</artifactId>
+		<groupId>cn.taroco</groupId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>taroco-rbac</artifactId>
+	<packaging>jar</packaging>
+	<name>taroco-rbac</name>
+	<description>taroco-rbac</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>cn.taroco</groupId>
+			<artifactId>taroco-log-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>cn.taroco</groupId>
+			<artifactId>taroco-swagger2-spring-boot-starter</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>cn.taroco</groupId>
+            <artifactId>taroco-ribbon-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.taroco</groupId>
+            <artifactId>taroco-redis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+		<!--MySQL-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- mybatis-plus start -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatisplus-spring-boot-starter</artifactId>
+			<version>${mybatisplus-spring-boot-starter.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat</groupId>
+					<artifactId>tomcat-jdbc</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- druid连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>io.shardingjdbc</groupId>-->
+			<!--<artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>-->
+			<!--<version>${sharding-jdbc-core-spring-boot-starter.version}</version>-->
+		<!--</dependency>-->
+        <!--mybatis-plus-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+		<!--myabtis-plus 代码生成依赖-->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-engine-core</artifactId>
+			<version>${velocity-engine-core.version}</version>
+		</dependency>
+		<!--mybatis-plus end -->
+		<!--七牛-->
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>qiniu-java-sdk</artifactId>
+			<version>${qiniu.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.axet</groupId>
+			<artifactId>kaptcha</artifactId>
+			<version>${kaptcha.version}</version>
+		</dependency>
+		<!--zipkin-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

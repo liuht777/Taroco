@@ -472,7 +472,7 @@ CREATE TABLE `sys_zuul_route` (
 -- Records of sys_zuul_route
 -- ----------------------------
 INSERT INTO `sys_zuul_route` VALUES ('3', '/taroco-admin/**', 'taroco-admin', '', '1', '1', '1', '', '2018-05-17 14:09:06', '2018-08-02 08:31:06', '0');
-INSERT INTO `sys_zuul_route` VALUES ('4', '/admin/**', 'taroco-upms-service', '', '1', '1', '1', '', '2018-05-21 11:40:38', '2018-08-02 08:31:32', '0');
+INSERT INTO `sys_zuul_route` VALUES ('4', '/admin/**', 'taroco-rbac-service', '', '1', '1', '1', '', '2018-05-21 11:40:38', '2018-08-02 08:31:32', '0');
 INSERT INTO `sys_zuul_route` VALUES ('5', '/auth/**', 'taroco-authentication-server', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:31:34', '0');
 INSERT INTO `sys_zuul_route` VALUES ('6', '/taroco-registry/**', 'taroco-registry', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:32:09', '0');
 INSERT INTO `sys_zuul_route` VALUES ('7', '/taroco-monitor/**', 'taroco-monitor', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:32:09', '0');

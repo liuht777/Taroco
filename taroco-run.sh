@@ -20,13 +20,13 @@ if [ ! -d ${JAR_DIR} ];then
 fi
 
 rm -rf ${JAR_DIR}/authentication-server*.jar
-rm -rf ${JAR_DIR}/taroco-upms*.jar
+rm -rf ${JAR_DIR}/taroco-rbac*.jar
 rm -rf ${JAR_DIR}/cloud-admin*.jar
 rm -rf ${JAR_DIR}/cloud-monitor*.jar
 rm -rf ${JAR_DIR}/taroco-gateway*.jar
 
 cp ./taroco-oauth2/authentication-server/target/authentication-server*.jar ${JAR_DIR}
-cp ./taroco-upms/target/taroco-upms*.jar ${JAR_DIR}
+cp ./taroco-rbac/target/taroco-rbac*.jar ${JAR_DIR}
 cp ./taroco-cloud/cloud-admin/target/cloud-admin*.jar ${JAR_DIR}
 cp ./taroco-cloud/cloud-monitor/target/cloud-monitor*.jar ${JAR_DIR}
 cp ./taroco-gateway/target/taroco-gateway*.jar ${JAR_DIR}

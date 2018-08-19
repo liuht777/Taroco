@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * 系统角色
+ *
  * @author liuht
  * @since 2017-10-29
  */
@@ -37,17 +39,4 @@ public class SysRole implements Serializable {
     private Date createTime;
     private Date updateTime;
     private String delFlag;
-
-    @Override
-    public String toString() {
-        return "SysRole{" +
-                ", roleId=" + roleId +
-                ", roleName=" + roleName +
-                ", roleCode=" + roleCode +
-                ", roleDesc=" + roleDesc +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", delFlag=" + delFlag +
-                "}";
-    }
 }

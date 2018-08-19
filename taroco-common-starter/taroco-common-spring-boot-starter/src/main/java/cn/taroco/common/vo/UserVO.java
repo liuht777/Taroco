@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 系统用户
+ *
  * @author liuht
  * @date 2017/10/29
  */

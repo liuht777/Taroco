@@ -23,9 +23,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * <p>
  * 菜单权限表
- * </p>
  *
  * @author liuht
  * @since 2017-11-08

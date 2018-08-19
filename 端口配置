@@ -4,7 +4,7 @@
 OAuth2 认证服务器 9001
 OAuth2 资源服务器1 9002
 OAuth2 资源服务器2 9003
-UPMS 权限管理 9009
+RBAC 权限管理 9009
 服务治理 taroco-admin 10001
 服务监控 taroco-monitor 10002
 

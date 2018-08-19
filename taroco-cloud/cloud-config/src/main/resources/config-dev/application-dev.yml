@@ -71,7 +71,7 @@ hystrix:
 ribbon:
   eager-load:
     enabled: true
-    clients: taroco-admin,taroco-upms-service,taroco-authentication-server
+    clients: taroco-admin,taroco-rbac-service,taroco-authentication-server
   # ribbon请求连接的超时时间 默认2秒 ms
   ConnectTimeout: 5000
   # 请求处理的超时时间 默认5秒 ms

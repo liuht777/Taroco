@@ -1,0 +1,32 @@
+server:
+  port: 9009
+
+spring:
+  application:
+    name: taroco-rbac-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      fail-fast: true
+      profile: ${spring.profiles.active}
+      label: ${spring.profiles.active}
+      discovery:
+        service-id: taroco-config
+        enabled: true
+
+---
+spring:
+  profiles: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+
+---
+spring:
+  profiles: test
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://taroco-registry:9000/eureka

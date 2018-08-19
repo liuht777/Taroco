@@ -25,6 +25,8 @@ import java.time.LocalDateTime;
 
 
 /**
+ * 图形验证码
+ *
  * @author liuht
  * @date 2017-12-18
  */

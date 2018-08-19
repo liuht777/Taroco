@@ -30,7 +30,7 @@ import java.util.Set;
  * @author liuht
  * @date 2017/10/31
  */
-@FeignClient(name = ServiceNameConstants.UPMS_SERVICE, fallback = MenuServiceFallbackImpl.class)
+@FeignClient(name = ServiceNameConstants.RBAC_SERVICE, fallback = MenuServiceFallbackImpl.class)
 public interface MenuService {
     /**
      * 通过角色名查询菜单
