@@ -30,9 +30,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>
  * 动态路由配置表 服务实现类
- * </p>
  *
  * @author liuht
  * @since 2018-05-15
