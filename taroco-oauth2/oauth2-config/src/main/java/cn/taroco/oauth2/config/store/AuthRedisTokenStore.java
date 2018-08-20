@@ -21,8 +21,6 @@ public class AuthRedisTokenStore {
 
     /**
      * 如果使用的 redis-cluster 模式请使用 TarocoRedisTokenStore
-     * * PigRedisTokenStore tokenStore = new PigRedisTokenStore();
-     * * tokenStore.setRedisTemplate(redisTemplate)
      *
      * @return TokenStore
      */
@@ -30,6 +28,6 @@ public class AuthRedisTokenStore {
     public TokenStore tokenStore() {
         RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
         tokenStore.setPrefix(SecurityConstants.TAROCO_PREFIX);
-        return new RedisTokenStore(redisConnectionFactory);
+        return tokenStore;
     }
 }
