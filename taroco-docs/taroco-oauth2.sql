@@ -1,66 +1,19 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : taroco-mysql
-Source Server Version : 50723
-Source Host           : 111.231.192.110:3306
+Source Server         : 本机root
+Source Server Version : 50716
+Source Host           : localhost:3306
 Source Database       : taroco-oauth2
 
 Target Server Type    : MYSQL
-Target Server Version : 50723
+Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2018-08-10 17:43:36
+Date: 2018-08-20 15:48:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for job_execution_log
--- ----------------------------
-DROP TABLE IF EXISTS `job_execution_log`;
-CREATE TABLE `job_execution_log` (
-  `id` varchar(40) NOT NULL,
-  `job_name` varchar(100) NOT NULL,
-  `task_id` varchar(255) NOT NULL,
-  `hostname` varchar(255) NOT NULL,
-  `ip` varchar(50) NOT NULL,
-  `sharding_item` int(11) NOT NULL,
-  `execution_source` varchar(20) NOT NULL,
-  `failure_cause` varchar(4000) DEFAULT NULL,
-  `is_success` int(11) NOT NULL,
-  `start_time` timestamp NULL DEFAULT NULL,
-  `complete_time` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of job_execution_log
--- ----------------------------
-
--- ----------------------------
--- Table structure for job_status_trace_log
--- ----------------------------
-DROP TABLE IF EXISTS `job_status_trace_log`;
-CREATE TABLE `job_status_trace_log` (
-  `id` varchar(40) NOT NULL,
-  `job_name` varchar(100) NOT NULL,
-  `original_task_id` varchar(255) NOT NULL,
-  `task_id` varchar(255) NOT NULL,
-  `slave_id` varchar(50) NOT NULL,
-  `source` varchar(50) NOT NULL,
-  `execution_type` varchar(20) NOT NULL,
-  `sharding_item` varchar(100) NOT NULL,
-  `state` varchar(20) NOT NULL,
-  `message` varchar(4000) DEFAULT NULL,
-  `creation_time` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `TASK_ID_STATE_INDEX` (`task_id`,`state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of job_status_trace_log
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -75,20 +28,14 @@ CREATE TABLE `sys_dept` (
   `del_flag` char(1) DEFAULT '0' COMMENT '是否删除  -1：已删除  0：正常',
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='部门管理';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='部门管理';
 
 -- ----------------------------
 -- Records of sys_dept
 -- ----------------------------
-INSERT INTO `sys_dept` VALUES ('1', '山东农信', null, '2018-01-22 19:00:23', '2018-01-23 12:40:46', '0', '0');
-INSERT INTO `sys_dept` VALUES ('2', '沙县国际', null, '2018-01-22 19:00:38', '2018-01-23 12:42:04', '0', '0');
-INSERT INTO `sys_dept` VALUES ('3', '潍坊农信', null, '2018-01-22 19:00:44', '2018-01-23 12:40:56', '0', '1');
-INSERT INTO `sys_dept` VALUES ('4', '高新农信', null, '2018-01-22 19:00:52', '2018-01-23 12:41:11', '0', '3');
-INSERT INTO `sys_dept` VALUES ('5', '院校农信', null, '2018-01-22 19:00:57', '2018-01-23 12:41:22', '0', '4');
-INSERT INTO `sys_dept` VALUES ('6', '潍坊学院农信', '115', '2018-01-22 19:01:06', '2018-03-07 16:22:04', '0', '5');
-INSERT INTO `sys_dept` VALUES ('7', '山东沙县', null, '2018-01-22 19:01:57', '2018-01-23 12:42:15', '0', '2');
-INSERT INTO `sys_dept` VALUES ('8', '潍坊沙县', null, '2018-01-22 19:02:03', '2018-01-23 12:42:23', '0', '7');
-INSERT INTO `sys_dept` VALUES ('9', '高新沙县', null, '2018-01-22 19:02:14', '2018-03-07 16:28:14', '0', '8');
+INSERT INTO `sys_dept` VALUES ('10', '顶级部门', '0', '2018-08-20 11:46:57', null, '0', '0');
+INSERT INTO `sys_dept` VALUES ('11', '一级部门', '0', '2018-08-20 11:47:10', null, '0', '10');
+INSERT INTO `sys_dept` VALUES ('12', '二级部门', '1', '2018-08-20 11:47:19', null, '0', '11');
 
 -- ----------------------------
 -- Table structure for sys_dept_relation
@@ -105,31 +52,12 @@ CREATE TABLE `sys_dept_relation` (
 -- ----------------------------
 -- Records of sys_dept_relation
 -- ----------------------------
-INSERT INTO `sys_dept_relation` VALUES ('1', '1');
-INSERT INTO `sys_dept_relation` VALUES ('1', '3');
-INSERT INTO `sys_dept_relation` VALUES ('1', '4');
-INSERT INTO `sys_dept_relation` VALUES ('1', '5');
-INSERT INTO `sys_dept_relation` VALUES ('1', '6');
-INSERT INTO `sys_dept_relation` VALUES ('2', '2');
-INSERT INTO `sys_dept_relation` VALUES ('2', '7');
-INSERT INTO `sys_dept_relation` VALUES ('2', '8');
-INSERT INTO `sys_dept_relation` VALUES ('2', '9');
-INSERT INTO `sys_dept_relation` VALUES ('3', '3');
-INSERT INTO `sys_dept_relation` VALUES ('3', '4');
-INSERT INTO `sys_dept_relation` VALUES ('3', '5');
-INSERT INTO `sys_dept_relation` VALUES ('3', '6');
-INSERT INTO `sys_dept_relation` VALUES ('4', '4');
-INSERT INTO `sys_dept_relation` VALUES ('4', '5');
-INSERT INTO `sys_dept_relation` VALUES ('4', '6');
-INSERT INTO `sys_dept_relation` VALUES ('5', '5');
-INSERT INTO `sys_dept_relation` VALUES ('5', '6');
-INSERT INTO `sys_dept_relation` VALUES ('6', '6');
-INSERT INTO `sys_dept_relation` VALUES ('7', '7');
-INSERT INTO `sys_dept_relation` VALUES ('7', '8');
-INSERT INTO `sys_dept_relation` VALUES ('7', '9');
-INSERT INTO `sys_dept_relation` VALUES ('8', '8');
-INSERT INTO `sys_dept_relation` VALUES ('8', '9');
-INSERT INTO `sys_dept_relation` VALUES ('9', '9');
+INSERT INTO `sys_dept_relation` VALUES ('10', '10');
+INSERT INTO `sys_dept_relation` VALUES ('10', '11');
+INSERT INTO `sys_dept_relation` VALUES ('10', '12');
+INSERT INTO `sys_dept_relation` VALUES ('11', '11');
+INSERT INTO `sys_dept_relation` VALUES ('11', '12');
+INSERT INTO `sys_dept_relation` VALUES ('12', '12');
 
 -- ----------------------------
 -- Table structure for sys_dict
@@ -155,8 +83,6 @@ CREATE TABLE `sys_dict` (
 -- ----------------------------
 -- Records of sys_dict
 -- ----------------------------
-INSERT INTO `sys_dict` VALUES ('2', '9', '异常', 'log_type', '日志异常', '1', '2017-12-28 13:06:39', '2018-01-06 10:54:41', null, '0');
-INSERT INTO `sys_dict` VALUES ('3', '0', '正常', 'log_type', '正常', '1', '2018-05-11 23:52:57', '2018-05-11 23:52:57', '123', '0');
 
 -- ----------------------------
 -- Table structure for sys_log
@@ -222,13 +148,7 @@ INSERT INTO `sys_menu` VALUES ('5', '日志管理', null, 'log', null, null, '1'
 INSERT INTO `sys_menu` VALUES ('6', '字典管理', null, 'dict', null, null, '1', 'icon-zygl', 'views/admin/dict/index', '6', '0', '2017-11-29 11:30:52', '2018-05-14 22:12:48', '0');
 INSERT INTO `sys_menu` VALUES ('7', '部门管理', null, 'dept', null, null, '1', 'icon-iconbmgl', 'views/admin/dept/index', '7', '0', '2018-01-20 13:17:19', '2018-05-14 22:11:16', '0');
 INSERT INTO `sys_menu` VALUES ('8', '系统监控', null, '/taroco-admin', null, null, '-1', 'icon-iconbmgl', 'Layout', '8', '0', '2018-01-22 12:30:41', '2018-05-14 20:41:16', '0');
-INSERT INTO `sys_menu` VALUES ('9', '服务监控', null, 'http://139.224.200.249:5001', null, null, '8', 'icon-jiankong', null, '9', '0', '2018-01-23 10:53:33', '2018-08-09 09:17:40', '1');
-INSERT INTO `sys_menu` VALUES ('10', 'zipkin监控', null, 'http://139.224.200.249:5002', null, null, '8', 'icon-jiankong', null, '11', '0', '2018-01-23 10:55:18', '2018-08-09 09:17:49', '1');
-INSERT INTO `sys_menu` VALUES ('11', 'pinpoint监控', null, 'https://pinpoint.pig4cloud.com', null, null, '8', 'icon-xiazaihuancun', null, '10', '0', '2018-01-25 11:08:52', '2018-08-09 09:17:52', '1');
-INSERT INTO `sys_menu` VALUES ('12', '缓存状态', null, 'http://139.224.200.249:8585', null, null, '8', 'icon-ecs-status', null, '12', '0', '2018-01-23 10:56:11', '2018-08-09 09:17:55', '1');
-INSERT INTO `sys_menu` VALUES ('13', 'ELK状态', null, 'http://139.224.200.249:5601', null, null, '8', 'icon-ecs-status', null, '13', '0', '2018-01-23 10:55:47', '2018-08-09 09:17:58', '1');
 INSERT INTO `sys_menu` VALUES ('14', '接口文档', null, 'http://111.231.192.110:10000/swagger-ui.html', '', null, '8', 'icon-wendangdocument72', null, '2', '0', '2018-01-23 10:56:43', '2018-08-09 09:19:18', '0');
-INSERT INTO `sys_menu` VALUES ('15', '任务监控', null, 'http://139.224.200.249:8899', null, null, '8', 'icon-jiankong', null, '15', '0', '2018-01-23 10:55:18', '2018-08-09 09:18:15', '1');
 INSERT INTO `sys_menu` VALUES ('21', '用户查看', '', null, '/admin/user/**', 'GET', '2', null, null, null, '1', '2017-11-07 20:58:05', '2018-02-04 14:28:49', '0');
 INSERT INTO `sys_menu` VALUES ('22', '用户新增', 'sys_user_add', null, '/admin/user/*', 'POST', '2', null, null, null, '1', '2017-11-08 09:52:09', '2017-12-04 16:31:10', '0');
 INSERT INTO `sys_menu` VALUES ('23', '用户修改', 'sys_user_upd', null, '/admin/user/**', 'PUT', '2', null, null, null, '1', '2017-11-08 09:52:48', '2018-01-17 17:40:01', '0');
@@ -263,7 +183,6 @@ INSERT INTO `sys_menu` VALUES ('111', '路由查看', null, null, '/admin/route/
 INSERT INTO `sys_menu` VALUES ('112', '路由新增', 'sys_route_add', null, '/admin/route/**', 'POST', '110', null, null, null, '1', '2018-05-15 21:52:22', '2018-05-15 21:53:46', '0');
 INSERT INTO `sys_menu` VALUES ('113', '路由修改', 'sys_route_upd', null, '/admin/route/**', 'PUT', '110', null, null, null, '1', '2018-05-15 21:55:38', null, '0');
 INSERT INTO `sys_menu` VALUES ('114', '路由删除', 'sys_route_del', null, '/admin/route/**', 'DELETE', '110', null, null, null, '1', '2018-05-15 21:56:45', null, '0');
-INSERT INTO `sys_menu` VALUES ('120', '图标管理', null, 'iconfont', '', null, '1', null, 'page/iconfont/index', '9', '0', '2018-08-10 07:15:39', '2018-08-10 07:57:50', '1');
 INSERT INTO `sys_menu` VALUES ('251', '服务查询', null, null, '/taroco-admin/api/**', 'GET', '25', null, null, '1', null, '2018-08-10 08:25:50', '2018-08-10 08:26:05', '0');
 INSERT INTO `sys_menu` VALUES ('252', '设置权重和标签', 'taroco_admin_set_weight', null, '/taroco-registry/eureka/apps/**', 'PUT', '25', null, null, '2', '1', '2018-08-10 08:54:10', '2018-08-10 08:54:47', '0');
 INSERT INTO `sys_menu` VALUES ('253', '服务日志级别设置', null, null, '/taroco-admin/api/applications/*/loggers/*', 'POST', '25', null, null, '1', null, '2018-08-10 09:17:06', null, '0');
@@ -290,7 +209,6 @@ CREATE TABLE `sys_oauth_client_details` (
 -- ----------------------------
 -- Records of sys_oauth_client_details
 -- ----------------------------
-INSERT INTO `sys_oauth_client_details` VALUES ('app', null, 'app', 'server', 'password,refresh_token', null, null, null, null, null, 'true');
 INSERT INTO `sys_oauth_client_details` VALUES ('taroco', null, 'taroco', 'server', 'password,refresh_token,authorization_code', null, null, null, null, null, 'false');
 
 -- ----------------------------
@@ -313,7 +231,7 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', 'admin', 'ROLE_ADMIN', '超级管理员', '2017-10-29 15:45:51', '2018-08-09 08:51:09', '0');
-INSERT INTO `sys_role` VALUES ('14', 'demo', 'demo', 'demo用户', '2018-04-20 07:14:32', '2018-04-21 23:35:22', '0');
+INSERT INTO `sys_role` VALUES ('14', 'demo', 'demo', 'demo用户', '2018-04-20 07:14:32', '2018-04-21 23:35:22', '1');
 
 -- ----------------------------
 -- Table structure for sys_role_dept
@@ -324,13 +242,13 @@ CREATE TABLE `sys_role_dept` (
   `role_id` int(20) DEFAULT NULL COMMENT '角色ID',
   `dept_id` int(20) DEFAULT NULL COMMENT '部门ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色与部门对应关系';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色与部门对应关系';
 
 -- ----------------------------
 -- Records of sys_role_dept
 -- ----------------------------
 INSERT INTO `sys_role_dept` VALUES ('14', '14', '1');
-INSERT INTO `sys_role_dept` VALUES ('15', '1', '1');
+INSERT INTO `sys_role_dept` VALUES ('16', '1', '10');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -430,8 +348,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin', '$2a$10$vg5QNHhCknAqevx9vM2s5esllJEzF/pa8VZXtFYHhhOhUcCw/GWyS', null, '17034642111', null, '1', '2018-04-20 07:15:18', '2018-07-30 17:35:51', '0');
-INSERT INTO `sys_user` VALUES ('5', 'test', '$2a$10$wPagc17x/vDAYJYpS22gZeXJ43oOpJ5r9JX.QBN89VJgNcw.Q5yNS', null, '18181956331', null, '1', '2018-08-10 07:59:06', '2018-08-10 15:59:46', '0');
+INSERT INTO `sys_user` VALUES ('1', 'admin', '$2a$10$vg5QNHhCknAqevx9vM2s5esllJEzF/pa8VZXtFYHhhOhUcCw/GWyS', null, '17034642111', null, '10', '2018-04-20 07:15:18', '2018-08-20 11:49:44', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -447,7 +364,6 @@ CREATE TABLE `sys_user_role` (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('1', '1');
-INSERT INTO `sys_user_role` VALUES ('5', '14');
 
 -- ----------------------------
 -- Table structure for sys_zuul_route
@@ -478,85 +394,3 @@ INSERT INTO `sys_zuul_route` VALUES ('6', '/taroco-registry/**', 'taroco-registr
 INSERT INTO `sys_zuul_route` VALUES ('7', '/taroco-monitor/**', 'taroco-monitor', '', '1', '1', '1', '', '2018-05-21 11:41:08', '2018-08-02 08:32:09', '0');
 INSERT INTO `sys_zuul_route` VALUES ('8', '/taroco-config/**', 'taroco-config', null, '1', '1', '1', null, '2018-08-06 03:36:21', '2018-08-06 11:36:16', '0');
 INSERT INTO `sys_zuul_route` VALUES ('9', '/taroco-demo1/**', 'taroco-demo1', '', '1', '1', '1', '', '2018-08-10 02:29:13', '2018-08-10 14:24:44', '1');
-
--- ----------------------------
--- Table structure for zipkin_annotations
--- ----------------------------
-DROP TABLE IF EXISTS `zipkin_annotations`;
-CREATE TABLE `zipkin_annotations` (
-  `trace_id_high` bigint(20) NOT NULL DEFAULT '0' COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',
-  `trace_id` bigint(20) NOT NULL COMMENT 'coincides with zipkin_spans.trace_id',
-  `span_id` bigint(20) NOT NULL COMMENT 'coincides with zipkin_spans.id',
-  `a_key` varchar(255) NOT NULL COMMENT 'BinaryAnnotation.key or Annotation.value if type == -1',
-  `a_value` blob COMMENT 'BinaryAnnotation.value(), which must be smaller than 64KB',
-  `a_type` int(11) NOT NULL COMMENT 'BinaryAnnotation.type() or -1 if Annotation',
-  `a_timestamp` bigint(20) DEFAULT NULL COMMENT 'Used to implement TTL; Annotation.timestamp or zipkin_spans.timestamp',
-  `endpoint_ipv4` int(11) DEFAULT NULL COMMENT 'Null when Binary/Annotation.endpoint is null',
-  `endpoint_ipv6` binary(16) DEFAULT NULL COMMENT 'Null when Binary/Annotation.endpoint is null, or no IPv6 address',
-  `endpoint_port` smallint(6) DEFAULT NULL COMMENT 'Null when Binary/Annotation.endpoint is null',
-  `endpoint_service_name` varchar(255) DEFAULT NULL COMMENT 'Null when Binary/Annotation.endpoint is null',
-  UNIQUE KEY `trace_id_high` (`trace_id_high`,`trace_id`,`span_id`,`a_key`,`a_timestamp`) COMMENT 'Ignore insert on duplicate',
-  UNIQUE KEY `trace_id_high_4` (`trace_id_high`,`trace_id`,`span_id`,`a_key`,`a_timestamp`) COMMENT 'Ignore insert on duplicate',
-  KEY `trace_id_high_2` (`trace_id_high`,`trace_id`,`span_id`) COMMENT 'for joining with zipkin_spans',
-  KEY `trace_id_high_3` (`trace_id_high`,`trace_id`) COMMENT 'for getTraces/ByIds',
-  KEY `endpoint_service_name` (`endpoint_service_name`) COMMENT 'for getTraces and getServiceNames',
-  KEY `a_type` (`a_type`) COMMENT 'for getTraces',
-  KEY `a_key` (`a_key`) COMMENT 'for getTraces',
-  KEY `trace_id` (`trace_id`,`span_id`,`a_key`) COMMENT 'for dependencies job',
-  KEY `trace_id_high_5` (`trace_id_high`,`trace_id`,`span_id`) COMMENT 'for joining with zipkin_spans',
-  KEY `trace_id_high_6` (`trace_id_high`,`trace_id`) COMMENT 'for getTraces/ByIds',
-  KEY `endpoint_service_name_2` (`endpoint_service_name`) COMMENT 'for getTraces and getServiceNames',
-  KEY `a_type_2` (`a_type`) COMMENT 'for getTraces',
-  KEY `a_key_2` (`a_key`) COMMENT 'for getTraces',
-  KEY `trace_id_2` (`trace_id`,`span_id`,`a_key`) COMMENT 'for dependencies job'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
-
--- ----------------------------
--- Records of zipkin_annotations
--- ----------------------------
-
--- ----------------------------
--- Table structure for zipkin_dependencies
--- ----------------------------
-DROP TABLE IF EXISTS `zipkin_dependencies`;
-CREATE TABLE `zipkin_dependencies` (
-  `day` date NOT NULL,
-  `parent` varchar(255) NOT NULL,
-  `child` varchar(255) NOT NULL,
-  `call_count` bigint(20) DEFAULT NULL,
-  UNIQUE KEY `day` (`day`,`parent`,`child`),
-  UNIQUE KEY `day_2` (`day`,`parent`,`child`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
-
--- ----------------------------
--- Records of zipkin_dependencies
--- ----------------------------
-
--- ----------------------------
--- Table structure for zipkin_spans
--- ----------------------------
-DROP TABLE IF EXISTS `zipkin_spans`;
-CREATE TABLE `zipkin_spans` (
-  `trace_id_high` bigint(20) NOT NULL DEFAULT '0' COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',
-  `trace_id` bigint(20) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `parent_id` bigint(20) DEFAULT NULL,
-  `debug` bit(1) DEFAULT NULL,
-  `start_ts` bigint(20) DEFAULT NULL COMMENT 'Span.timestamp(): epoch micros used for endTs query and to implement TTL',
-  `duration` bigint(20) DEFAULT NULL COMMENT 'Span.duration(): micros used for minDuration and maxDuration query',
-  UNIQUE KEY `trace_id_high` (`trace_id_high`,`trace_id`,`id`) COMMENT 'ignore insert on duplicate',
-  UNIQUE KEY `trace_id_high_4` (`trace_id_high`,`trace_id`,`id`) COMMENT 'ignore insert on duplicate',
-  KEY `trace_id_high_2` (`trace_id_high`,`trace_id`,`id`) COMMENT 'for joining with zipkin_annotations',
-  KEY `trace_id_high_3` (`trace_id_high`,`trace_id`) COMMENT 'for getTracesByIds',
-  KEY `name` (`name`) COMMENT 'for getTraces and getSpanNames',
-  KEY `start_ts` (`start_ts`) COMMENT 'for getTraces ordering and range',
-  KEY `trace_id_high_5` (`trace_id_high`,`trace_id`,`id`) COMMENT 'for joining with zipkin_annotations',
-  KEY `trace_id_high_6` (`trace_id_high`,`trace_id`) COMMENT 'for getTracesByIds',
-  KEY `name_2` (`name`) COMMENT 'for getTraces and getSpanNames',
-  KEY `start_ts_2` (`start_ts`) COMMENT 'for getTraces ordering and range'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
-
--- ----------------------------
--- Records of zipkin_spans
--- ----------------------------

@@ -18,11 +18,6 @@ public interface CommonConstant {
     String TOKEN_SPLIT = "Bearer ";
 
     /**
-     * jwt签名
-     */
-    String SIGN_KEY = "TAROCO";
-
-    /**
      * 删除
      */
     String STATUS_DEL = "1";
@@ -58,19 +53,10 @@ public interface CommonConstant {
     String UTF8 = "UTF-8";
 
     /**
-     * JSON 资源
-     */
-    String CONTENT_TYPE = "application/json; charset=utf-8";
-
-    /**
-     * 阿里大鱼
-     */
-    String ALIYUN_SMS = "aliyun_sms";
-
-    /**
      * 路由信息Redis保存的key
      */
-    String ROUTE_KEY = "_ROUTE_KEY";
+    String ROUTE_KEY = SecurityConstants.TAROCO_PREFIX + "ROUTE_LIST";
+
     /**
      * 超级管理员用户名
      */

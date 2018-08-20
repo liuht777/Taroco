@@ -1,12 +1,13 @@
 package cn.taroco.gateway.config;
 
+import cn.taroco.common.redis.template.TarocoRedisRepository;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
+import org.springframework.cloud.netflix.zuul.filters.discovery.DiscoveryClientRouteLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  * @author liuht
@@ -19,23 +20,24 @@ public class DynamicRouteConfiguration {
     private DiscoveryClient discovery;
     private ZuulProperties zuulProperties;
     private ServerProperties server;
-    private RedisTemplate redisTemplate;
+    private TarocoRedisRepository redisRepository;
 
     public DynamicRouteConfiguration(Registration registration, DiscoveryClient discovery,
-                                     ZuulProperties zuulProperties, ServerProperties server, RedisTemplate redisTemplate) {
+                                     ZuulProperties zuulProperties, ServerProperties server, TarocoRedisRepository redisRepository) {
         this.registration = registration;
         this.discovery = discovery;
         this.zuulProperties = zuulProperties;
         this.server = server;
-        this.redisTemplate = redisTemplate;
+        this.redisRepository = redisRepository;
     }
 
     @Bean
-    public DynamicRouteLocator dynamicRouteLocator() {
-        return new DynamicRouteLocator(server.getServletPrefix()
+    public DiscoveryClientRouteLocator dynamicRouteLocator() {
+        return new DynamicRouteLocator(
+                server.getServletPrefix()
                 , discovery
                 , zuulProperties
                 , registration
-                , redisTemplate);
+                , redisRepository);
     }
 }

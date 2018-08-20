@@ -2,13 +2,14 @@ package cn.taroco.rbac.admin.common.listener;
 
 import cn.taroco.common.constants.CommonConstant;
 import cn.taroco.common.entity.SysZuulRoute;
+import cn.taroco.common.redis.template.TarocoRedisRepository;
+import cn.taroco.common.utils.JsonUtils;
 import cn.taroco.rbac.admin.service.SysZuulRouteService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -23,7 +24,8 @@ import java.util.List;
 @Component
 public class RouteConfigInitListener {
     @Autowired
-    private RedisTemplate redisTemplate;
+    private TarocoRedisRepository redisRepository;
+
     @Autowired
     private SysZuulRouteService sysZuulRouteService;
 
@@ -34,11 +36,11 @@ public class RouteConfigInitListener {
     @EventListener(value = {EmbeddedServletContainerInitializedEvent.class})
     public void init() {
         log.info("开始初始化路由配置数据");
-        EntityWrapper wrapper = new EntityWrapper();
+        EntityWrapper<SysZuulRoute> wrapper = new EntityWrapper<>();
         wrapper.eq(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
         List<SysZuulRoute> routeList = sysZuulRouteService.selectList(wrapper);
         if (!CollectionUtils.isEmpty(routeList)) {
-            redisTemplate.opsForValue().set(CommonConstant.ROUTE_KEY, routeList);
+            redisRepository.set(CommonConstant.ROUTE_KEY, JsonUtils.toJsonString(routeList));
             log.info("更新Redis中路由配置数据：{}条", routeList.size());
         }
         log.info("初始化路由配置数据完毕");

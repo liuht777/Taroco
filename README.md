@@ -1,7 +1,7 @@
 # Taroco [演示地址](http://111.231.192.110)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://gitee.com/Hyman_Liu/Taroco/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/liuht777/Taroco)
 
 ## 前言
 
@@ -16,9 +16,20 @@ Cloud为微服务架构开发涉及的统一认证，配置管理，服务治理
 Spring Cloud本身已经封装得足够简单，也够丰富。也许正是因为这种简单而丰富，使得想要使用它的团队望而却步。学习成本太高，历史包袱太重，维护成本太高等等一系列原因。
 
 *Taroco*就是为了解决这一问题而诞生的。*Taroco*整合了Spring Cloud的**配置中心**、**注册中心**、**服务网关**，提供了一系列starter组件，
-同时提供**服务治理**、**服务监控**、**auth2权限认证**，支持**服务降级/熔断**、**基于标签(x-label)的路由**、**服务权重**，前端采用**vue+elementUI+webpack**，可以很好的解决转向Spring Cloud的一系列问题，努力为中小型企业打造全方位微服务企业级敏捷开发解决方案。
+同时提供**服务治理**、**服务监控**、**OAuth2权限认证**，支持**服务降级/熔断**、**基于标签(x-label)
+的路由**、**服务权重**，前端采用**vue+elementUI**，可以很好的解决转向Spring Cloud的一系列问题，努力打造全方位微服务企业级敏捷开发解决方案。
 
-*Taroco*提供了基于Docker Compose的部署方式。统一放置在docs目录中，运行脚本案例在根目录中查找。
+*Taroco*提供了基于Docker Compose的部署方式。配置文件统一放置在docs目录中，运行脚本案例在根目录中查找。
+
+### 主要实现功能
+* Spring Cloud Eureka注册中心
+* Spring Cloud Config Server配置中心，统一管理配置信息
+* Spring Cloud Zuul Gateway统一微服务网关配置，支持动态路由配置
+* 基于spring-boot-starter-actuator的自己实现的服务治理。包括日志、变量、映射等情况。
+* 基于Hystrix的聚合监控页面，包括单个服务和服务多个实例的监控。
+* 基于Spring Security OAuth2的权限认证系统。采用JWT RSA非对称加密的形式进行token加密解密。
+* 支持基于权重以及基于标签的服务路由，支持动态配置服务权重及标签信息。通过控制用户标签以及动态路由的配置，满足各种各样请求策略。
+* 基于角色的RBAC权限控制。支持数据权限控制。
 
 ### 开发环境
 
@@ -38,9 +49,9 @@ Spring Cloud本身已经封装得足够简单，也够丰富。也许正是因�
 
 ### 链接推荐
 
-- Spring Boot 1.5.8.RELEASE官方文档 [https://docs.spring.io/spring-boot/docs/1.5.8.RELEASE/reference/htmlsingle/](https://docs.spring.io/spring-boot/docs/1.5.8.RELEASE/reference/htmlsingle/ "Spring Boot")
-- Spring Cloud Dalston.SR4官方文档 [http://cloud.spring.io/spring-cloud-static/Dalston.SR4/multi/multi_spring-cloud.html](http://cloud.spring.io/spring-cloud-static/Dalston.SR4/multi/multi_spring-cloud.html "Spring Cloud")
-- ANT DESIGN [https://ant.design/docs/react/getting-started-cn](https://ant.design/docs/react/getting-started-cn "ANT DESIGN")
+- Spring Boot 1.5.12.RELEASE官方文档 [https://docs.spring.io/spring-boot/docs/1.5.12.RELEASE/reference/htmlsingle/]
+(https://docs.spring.io/spring-boot/docs/1.5.12.RELEASE/reference/htmlsingle/ "Spring Boot")
+- Spring Cloud Edgware.SR4官方文档 [http://cloud.spring.io/spring-cloud-static/Dalston.SR4/multi/multi_spring-cloud.html](http://cloud.spring.io/spring-cloud-static/Edgware.SR4/multi/multi_spring-cloud.html "Spring Cloud")
 
 ### 资源下载
 

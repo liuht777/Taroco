@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 import org.springframework.stereotype.Component;
@@ -42,7 +43,7 @@ public class TarocoAccessDeniedHandler extends OAuth2AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException authException) throws IOException, ServletException {
         log.info("授权失败，禁止访问 {}", request.getRequestURI());
         response.setCharacterEncoding(CommonConstant.UTF8);
-        response.setContentType(CommonConstant.CONTENT_TYPE);
+        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         Response result = Response.failure(DefaultError.ACCESS_DENIED);
         response.setStatus(HttpStatus.SC_FORBIDDEN);
         PrintWriter printWriter = response.getWriter();

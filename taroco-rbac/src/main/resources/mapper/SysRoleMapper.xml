@@ -34,6 +34,9 @@
 		LEFT JOIN sys_role_dept rd ON rd.role_id = r.role_id
 		LEFT JOIN sys_dept d ON rd.dept_id = d.dept_id
 		WHERE r.del_flag = 0
+        <if test="roleName != null and roleName != ''">
+            and instr(r.role_name, #{roleName}) > 0
+        </if>
 		ORDER BY r.role_id ASC
 	</select>
 	<select id="selectListByDeptId" resultMap="BaseResultMap">

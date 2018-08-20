@@ -2,12 +2,13 @@ package cn.taroco.rbac.admin.service.impl;
 
 import cn.taroco.common.constants.CommonConstant;
 import cn.taroco.common.entity.SysZuulRoute;
+import cn.taroco.common.redis.template.TarocoRedisRepository;
+import cn.taroco.common.utils.JsonUtils;
 import cn.taroco.rbac.admin.mapper.SysZuulRouteMapper;
 import cn.taroco.rbac.admin.service.SysZuulRouteService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,21 +21,21 @@ import java.util.List;
  */
 @Service
 public class SysZuulRouteServiceImpl extends ServiceImpl<SysZuulRouteMapper, SysZuulRoute> implements SysZuulRouteService {
+
     @Autowired
-    private RedisTemplate redisTemplate;
+    private TarocoRedisRepository redisRepository;
 
     /**
-     * 立即生效配置
+     * 同步路由配置信息,到服务网关
      *
-     * @return
+     * @return 同步成功
      */
     @Override
     public Boolean applyZuulRoute() {
-        EntityWrapper wrapper = new EntityWrapper();
+        EntityWrapper<SysZuulRoute> wrapper = new EntityWrapper<>();
         wrapper.eq(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
         List<SysZuulRoute> routeList = selectList(wrapper);
-        redisTemplate.opsForValue().set(CommonConstant.ROUTE_KEY, routeList);
-        //rabbitTemplate.convertAndSend(MqQueueConstant.ROUTE_CONFIG_CHANGE, 1);
+        redisRepository.set(CommonConstant.ROUTE_KEY, JsonUtils.toJsonString(routeList));
         return Boolean.TRUE;
     }
 }

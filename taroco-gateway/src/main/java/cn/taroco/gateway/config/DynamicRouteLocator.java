@@ -2,6 +2,8 @@ package cn.taroco.gateway.config;
 
 import cn.taroco.common.constants.CommonConstant;
 import cn.taroco.common.entity.SysZuulRoute;
+import cn.taroco.common.redis.template.TarocoRedisRepository;
+import com.alibaba.fastjson.JSONArray;
 import com.xiaoleilu.hutool.collection.CollUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +11,6 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.netflix.zuul.filters.discovery.DiscoveryClientRouteLocator;
-import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,32 +24,29 @@ import java.util.Set;
  */
 @Slf4j
 public class DynamicRouteLocator extends DiscoveryClientRouteLocator {
+
     private ZuulProperties properties;
-    private RedisTemplate redisTemplate;
+
+    private TarocoRedisRepository redisRepository;
 
     public DynamicRouteLocator(String servletPath, DiscoveryClient discovery, ZuulProperties properties,
-                               ServiceInstance localServiceInstance, RedisTemplate redisTemplate) {
+                               ServiceInstance localServiceInstance, TarocoRedisRepository redisRepository) {
         super(servletPath, discovery, properties, localServiceInstance);
         this.properties = properties;
-        this.redisTemplate = redisTemplate;
+        this.redisRepository = redisRepository;
     }
 
     /**
      * 重写路由配置
-     * <p>
-     * 1. properties 配置。
-     * 2. eureka 默认配置。
-     * 3. DB数据库配置。
      *
      * @return 路由表
      */
     @Override
     protected LinkedHashMap<String, ZuulProperties.ZuulRoute> locateRoutes() {
-        LinkedHashMap<String, ZuulProperties.ZuulRoute> routesMap = new LinkedHashMap<>();
         //读取properties配置、eureka默认配置
-        routesMap.putAll(super.locateRoutes());
+        LinkedHashMap<String, ZuulProperties.ZuulRoute> routesMap = new LinkedHashMap<>(super.locateRoutes());
         log.debug("初始默认的路由配置完成");
-        routesMap.putAll(locateRoutesFromDb());
+        routesMap.putAll(locateRoutesFromCache());
         LinkedHashMap<String, ZuulProperties.ZuulRoute> values = new LinkedHashMap<>();
         for (Map.Entry<String, ZuulProperties.ZuulRoute> entry : routesMap.entrySet()) {
             String path = entry.getKey();
@@ -67,19 +65,19 @@ public class DynamicRouteLocator extends DiscoveryClientRouteLocator {
     }
 
     /**
-     * Redis中保存的，没有从rbac拉去，避免启动链路依赖问题（取舍），网关依赖业务模块的问题
+     * 从Redis中读取缓存的路由信息，没有从rbac拉取，避免启动链路依赖问题（取舍），网关依赖业务模块的问题
      *
-     * @return
+     * @return 缓存中的路由表
      */
-    private Map<String, ZuulProperties.ZuulRoute> locateRoutesFromDb() {
+    private Map<String, ZuulProperties.ZuulRoute> locateRoutesFromCache() {
         Map<String, ZuulProperties.ZuulRoute> routes = new LinkedHashMap<>();
 
-        Object obj = redisTemplate.opsForValue().get(CommonConstant.ROUTE_KEY);
-        if (obj == null) {
+        String vals = redisRepository.get(CommonConstant.ROUTE_KEY);
+        if (vals == null) {
             return routes;
         }
 
-        List<SysZuulRoute> results = (List<SysZuulRoute>) obj;
+        List<SysZuulRoute> results = JSONArray.parseArray(vals, SysZuulRoute.class);
         for (SysZuulRoute result : results) {
             if (StrUtil.isBlank(result.getPath()) && StrUtil.isBlank(result.getUrl())) {
                 continue;
