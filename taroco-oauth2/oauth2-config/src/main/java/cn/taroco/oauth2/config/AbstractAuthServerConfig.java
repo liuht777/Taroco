@@ -1,13 +1,10 @@
 package cn.taroco.oauth2.config;
 
-import cn.taroco.common.constants.CommonConstant;
 import cn.taroco.common.constants.SecurityConstants;
-import cn.taroco.oauth2.config.util.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -23,8 +20,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 
 import javax.sql.DataSource;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 认证服务器配置
@@ -46,6 +41,12 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired(required = false)
+    private TokenEnhancer tokenEnhancer;
+
+    @Autowired(required = false)
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
 
     /**
      * 令牌失效时间
@@ -82,32 +83,6 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
         return clientDetailsService;
     }
 
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        TarocoJwtAccessTokenConverter jwtAccessTokenConverter = new TarocoJwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey(CommonConstant.SIGN_KEY);
-        return jwtAccessTokenConverter;
-    }
-
-    /**
-     * jwt 生成token 定制化处理
-     *
-     * @return TokenEnhancer
-     */
-    @Bean
-    public TokenEnhancer tokenEnhancer() {
-        return (accessToken, authentication) -> {
-            final Map<String, Object> additionalInfo = new HashMap<>(2);
-            additionalInfo.put("license", SecurityConstants.LICENSE);
-            UserDetailsImpl user = (UserDetailsImpl) authentication.getUserAuthentication().getPrincipal();
-            if (user != null) {
-                additionalInfo.put("userId", user.getUserId());
-            }
-            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
-            return accessToken;
-        };
-    }
-
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
@@ -119,18 +94,20 @@ public class AbstractAuthServerConfig extends AuthorizationServerConfigurerAdapt
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        //token增强配置
-        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(
-                Arrays.asList(tokenEnhancer(), jwtAccessTokenConverter()));
-
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setReuseRefreshToken(isReuseRefreshToken);
         defaultTokenServices.setSupportRefreshToken(isSupportRefreshToken);
         defaultTokenServices.setTokenStore(tokenStore);
         defaultTokenServices.setAccessTokenValiditySeconds(accessTokenValiditySeconds);
         defaultTokenServices.setRefreshTokenValiditySeconds(refreshTokenValiditySeconds);
-        defaultTokenServices.setTokenEnhancer(tokenEnhancerChain);
+
+        if (tokenEnhancer != null && jwtAccessTokenConverter != null) {
+            TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+            tokenEnhancerChain.setTokenEnhancers(
+                    Arrays.asList(tokenEnhancer, jwtAccessTokenConverter));
+            defaultTokenServices.setTokenEnhancer(tokenEnhancerChain);
+        }
+
         defaultTokenServices.setClientDetailsService(clientDetailsService());
 
         endpoints

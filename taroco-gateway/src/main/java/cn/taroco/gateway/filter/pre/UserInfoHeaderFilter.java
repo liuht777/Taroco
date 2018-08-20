@@ -12,13 +12,14 @@ import org.springframework.stereotype.Component;
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.FORM_BODY_WRAPPER_FILTER_ORDER;
 
 /**
+ * 将认证用户的相关信息 放入header中, 后端服务可以直接读取使用
  * 在RateLimitPreFilter 之前执行，不然有空指针问题
  *
  * @author liuht
  * @date 2017/11/20
  */
 @Component
-public class AccessFilter extends ZuulFilter {
+public class UserInfoHeaderFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
@@ -43,7 +44,7 @@ public class AccessFilter extends ZuulFilter {
         if (authentication != null) {
             RequestContext requestContext = RequestContext.getCurrentContext();
             requestContext.addZuulRequestHeader(SecurityConstants.USER_HEADER, authentication.getName());
-            requestContext.addZuulRequestHeader(SecurityConstants.ROLE_HEADER,  CollectionUtil.join(authentication.getAuthorities(),","));
+            requestContext.addZuulRequestHeader(SecurityConstants.ROLE_HEADER, CollectionUtil.join(authentication.getAuthorities(), ","));
         }
         return null;
     }

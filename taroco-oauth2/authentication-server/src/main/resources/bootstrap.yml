@@ -1,6 +1,12 @@
 server:
   port: 9001
 
+encrypt:
+  key-store:
+    location: classpath:taroco.jks
+    secret: taroco!@#$
+    alias: taroco
+
 spring:
   application:
     name: taroco-authentication-server

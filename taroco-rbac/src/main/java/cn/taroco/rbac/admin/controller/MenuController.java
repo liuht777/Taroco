@@ -1,6 +1,7 @@
 package cn.taroco.rbac.admin.controller;
 
 import cn.taroco.common.constants.CommonConstant;
+import cn.taroco.common.constants.SecurityConstants;
 import cn.taroco.common.vo.MenuVO;
 import cn.taroco.common.web.BaseController;
 import cn.taroco.common.web.Response;
@@ -10,6 +11,7 @@ import cn.taroco.rbac.admin.common.util.TreeUtil;
 import cn.taroco.rbac.admin.model.entity.SysMenu;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -41,10 +43,13 @@ public class MenuController extends BaseController {
      * @return 当前用户的树形菜单
      */
     @GetMapping(value = "/userMenu")
-    public List<MenuTree> userMenu() {
+    public List<MenuTree> userMenu(@RequestHeader(name = SecurityConstants.ROLE_HEADER) String roles) {
+        if (StringUtils.isEmpty(roles)) {
+            return Collections.emptyList();
+        }
         // 获取符合条件得菜单
         Set<MenuVO> all = new HashSet<>();
-        getRole().forEach(roleName -> all.addAll(sysMenuService.findMenuByRoleName(roleName)));
+        Arrays.stream(roles.split(",")).forEach(role -> all.addAll(sysMenuService.findMenuByRoleName(role)));
         List<MenuTree> menuTreeList = new ArrayList<>();
         all.forEach(menuVo -> {
             if (CommonConstant.MENU.equals(menuVo.getType())) {
