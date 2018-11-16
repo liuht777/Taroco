@@ -17,7 +17,7 @@ public class UserServiceFallbackImpl implements UserService {
     @Override
     public UserVO findUserByUsername(String username) {
         log.error("通过用户名查询用户异常:{}", username);
-        return null;
+        return new UserVO();
     }
 
     /**
@@ -29,7 +29,7 @@ public class UserServiceFallbackImpl implements UserService {
     @Override
     public UserVO findUserByMobile(String mobile) {
         log.error("通过手机号查询用户:{}", mobile);
-        return null;
+        return new UserVO();
     }
 
     /**
@@ -41,6 +41,6 @@ public class UserServiceFallbackImpl implements UserService {
     @Override
     public UserVO findUserByOpenId(String openId) {
         log.error("通过OpenId查询用户:{}", openId);
-        return null;
+        return new UserVO();
     }
 }

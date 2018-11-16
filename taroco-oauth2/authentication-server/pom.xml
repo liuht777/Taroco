@@ -20,6 +20,12 @@
         <dependency>
             <groupId>cn.taroco</groupId>
             <artifactId>taroco-ribbon-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>HdrHistogram</artifactId>
+                    <groupId>org.hdrhistogram</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

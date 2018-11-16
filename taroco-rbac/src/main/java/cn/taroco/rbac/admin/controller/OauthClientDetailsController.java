@@ -65,7 +65,7 @@ public class OauthClientDetailsController extends BaseController {
         if (StringUtils.isEmpty(client.getAdditionalInformation())) {
             client.setAdditionalInformation(null);
         }
-        final String secret = encoder.encode(client.getClientId() + ":" + client.getClientSecret());
+        final String secret = encoder.encode(client.getClientSecret());
         client.setClientSecret(secret);
         return Response.success(sysOauthClientDetailsService.insert(client));
     }
@@ -91,7 +91,7 @@ public class OauthClientDetailsController extends BaseController {
      */
     @PutMapping
     public Response edit(@RequestBody SysOauthClientDetails client) {
-        final String pass = client.getClientId() + ":" + client.getClientSecret();
+        final String pass = client.getClientSecret();
         final SysOauthClientDetails details = sysOauthClientDetailsService.selectById(client.getClientId());
         if (encoder.matches(pass, details.getClientSecret())) {
             client.setClientSecret(encoder.encode(pass));
