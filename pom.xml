@@ -34,7 +34,7 @@
         <!-- 版本属性 -->
         <spring-cloud-alibaba.version>2.0.0.RELEASE</spring-cloud-alibaba.version>
         <spring-cloud.version>Finchley.SR4</spring-cloud.version>
-        <spring-security-oauth2.version>2.3.2.RELEASE</spring-security-oauth2.version>
+        <spring-security-oauth2.version>2.3.6.RELEASE</spring-security-oauth2.version>
         <spring-boot-admin.version>2.0.5</spring-boot-admin.version>
         <springfox.version>2.8.0</springfox.version>
         <mybatis-plus.version>3.0.7.1</mybatis-plus.version>
